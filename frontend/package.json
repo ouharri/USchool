@@ -19,8 +19,9 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.25.3",
-    "element-ui": "^2.15.10",
+    "element-ui": "^2.15.13",
     "nuxt": "^2.15.8",
+    "tailwindcss": "^3.2.7",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "@nuxtjs/tailwindcss": "^6.6.0",
     "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
