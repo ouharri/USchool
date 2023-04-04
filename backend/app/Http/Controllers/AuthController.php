@@ -107,7 +107,7 @@ class AuthController extends Controller
      *
      * @return JsonResponse
      */
-    protected function createNewToken($token)
+    protected function createNewToken(string $token): JsonResponse
     {
         return response()->json([
             'access_token' => $token,
