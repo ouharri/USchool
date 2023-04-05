@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -25,7 +26,6 @@ class AuthController extends Controller
      *
      * @param Request $request
      * @return JsonResponse
-     * @throws ValidationException
      */
     public function login(Request $request): JsonResponse
     {
@@ -36,7 +36,8 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-        if (!$token = auth()->attempt($validator->validated())) {
+        $credentials = $request->only(['email', 'password']);
+        if (!$token = Auth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
         return $this->createNewToken($token);
@@ -76,7 +77,7 @@ class AuthController extends Controller
      */
     public function logout(): JsonResponse
     {
-        auth()->logout();
+        Auth::logout();
         return response()->json(['message' => 'User successfully signed out']);
     }
 
@@ -87,7 +88,7 @@ class AuthController extends Controller
      */
     public function refresh(): JsonResponse
     {
-        return $this->createNewToken(auth()->refresh());
+        return $this->createNewToken(Auth::refresh());
     }
 
     /**
@@ -97,7 +98,7 @@ class AuthController extends Controller
      */
     public function userProfile(): JsonResponse
     {
-        return response()->json(auth()->user());
+        return response()->json(Auth::user());
     }
 
     /**
@@ -112,8 +113,8 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
+            'expires_in' => Auth::factory()->getTTL() * 60,
+            'user' => Auth::user()
         ]);
     }
 }
