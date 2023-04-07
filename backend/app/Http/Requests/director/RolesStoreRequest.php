@@ -11,10 +11,11 @@ class RolesStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if ($this->user()->can('setting-edit')) {
-            return true;
-        }
-        return false;
+
+//        if ($this->user()->can('setting-edit')) {
+//            return true;
+//        }
+        return true;
     }
 
     /**

@@ -15,6 +15,7 @@ class RolesAndPermissionController extends Controller
     public function index()
     {
         //
+        echo 'hhh';
     }
 
     /**
@@ -30,11 +31,15 @@ class RolesAndPermissionController extends Controller
      */
     public function store(RolesStoreRequest $request)
     {
+        echo 'hhh';
         $data = $request->validated();
         $role = Role::create([
             'name' => $request->role,
             'guard_name' => 'api'
         ])->givePermissionTo($request->permissions);
+
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+
         return response()->json(
             [
                 'message' => 'Role created successfully',
