@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\director\RolesAndPermissionController;
+use App\Http\Controllers\student\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,5 @@ Route::group([
 });
 
 Route::resource('roles', RolesAndPermissionController::class);
+
+Route::apiResource('student',StudentController::class);
