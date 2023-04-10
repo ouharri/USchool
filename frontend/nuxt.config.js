@@ -33,6 +33,9 @@ export default {
     '@nuxtjs/tailwindcss',
     // https://auth.nuxtjs.org/
     '@nuxtjs/auth-next',
+    //https://pinia.vuejs.org/
+    '@pinia/nuxt',
+    'nuxt-headlessui',
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -72,6 +75,10 @@ export default {
     manifest: {
       lang: 'en',
     },
+  },
+
+  headlessui: {
+    prefix: 'Headless'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
