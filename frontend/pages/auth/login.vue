@@ -99,7 +99,7 @@
                 class="absolute inset-0 flex items-center"
                 aria-hidden="true"
               >
-                <div class="w-full border-t border-gray-300" />
+                <div class="w-full border-t border-gray-300"/>
               </div>
               <div class="relative flex justify-center text-sm">
                 <span class="px-2 bg-white text-gray-500">
@@ -121,7 +121,8 @@
                   </label>
                   <div class="mt-1">
                     <el-input
-                      placeholder="Please input"
+                      placeholder="Please enter your email address"
+                      auto-complete="email"
                       v-model="ruleForm.email"
                       clearable
                     >
@@ -152,7 +153,8 @@
                 <el-form-item>
                   <div class="flex items-center">
                     <el-checkbox v-model="ruleForm.checked">
-                      Remember me</el-checkbox
+                      Remember me
+                    </el-checkbox
                     >
                   </div>
                 </el-form-item>
@@ -167,12 +169,11 @@
                   </div>
                 </el-form-item>
               </div>
-
               <div>
                 <el-form-item>
                   <button
-                    type="button"
-                    @click="submitForm('ruleForm')"
+                    type="submit"
+                    @click.prevent="submitForm('ruleForm')"
                     class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     Sign in
@@ -222,7 +223,12 @@ export default {
             trigger: 'blur',
           },
           {
-            min: 3,
+            type: 'email',
+            message: 'Please enter a valid email',
+            trigger: 'blur',
+          },
+          {
+            min: 6,
             max: 50,
             message: 'Length should be 3 to 50',
             trigger: 'blur',
@@ -231,7 +237,7 @@ export default {
         password: [
           {
             required: true,
-            message: 'Please input Activity password',
+            message: 'Please enter a password',
             trigger: 'blur',
           },
           {
@@ -248,14 +254,18 @@ export default {
     async submitForm(formName) {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          const data = new FormData();
-          data.append('email', this.ruleForm.email);
-          data.append('password', this.ruleForm.password);
           try {
-            let response = await this.$auth.loginWith('laravelJWT', { data: this.ruleForm })
-            console.log(response)
+            await this.$auth.loginWith('laravelJWT', {data: this.ruleForm})
+            this.$message({
+              message: 'welcome back',
+              type: 'success',
+            })
+            await this.$router.push({name: 'dashboard'});
           } catch (err) {
-            console.log(err)
+            this.$message({
+              message: 'Invalid Credentials',
+              type: 'error',
+            })
           }
         } else {
           this.$notify({

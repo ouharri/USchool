@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Http\Resources\users\RolesResource;
+use App\Models\user;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,7 +62,7 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
-        $user = User::create(array_merge(
+        $user = user::create(array_merge(
             $validator->validated(),
             ['password' => bcrypt($request->password)]
         ));
@@ -114,8 +115,9 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            // 'expires_in' => Auth::factory()->getTTL() * 60,
-            'user' => Auth::user()
+//             'expires_in' => Auth::factory()->getTTL() * 60,
+            'user' => Auth::user(),
+            'role' => RolesResource::collection(Auth::user()->roles()->get()),
         ]);
     }
 }
