@@ -263,7 +263,7 @@ export default {
             await this.$router.push({name: 'dashboard'});
           } catch (err) {
             this.$message({
-              message: 'Invalid Credentials',
+              message: 'Email or password is incorrect',
               type: 'error',
             })
           }
