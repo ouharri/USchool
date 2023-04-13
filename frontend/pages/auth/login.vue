@@ -124,6 +124,7 @@
                       placeholder="Please enter your email address"
                       auto-complete="email"
                       v-model="ruleForm.email"
+                      autocomplete="on"
                       clearable
                     >
                     </el-input>
@@ -141,6 +142,7 @@
                   <div class="mt-1">
                     <el-input
                       placeholder="Please input password"
+                      autocomplete="on"
                       v-model="ruleForm.password"
                       show-password
                     >
@@ -255,7 +257,7 @@ export default {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
           try {
-            await this.$auth.loginWith('laravelJWT', {data: this.ruleForm})
+            await this.$auth.loginWith('USchool', {data: this.ruleForm})
             this.$message({
               message: 'welcome back',
               type: 'success',

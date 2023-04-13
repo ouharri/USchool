@@ -51,7 +51,7 @@ export default {
 
   auth: {
     strategies: {
-      laravelJWT: {
+      USchool: {
         provider: 'laravel/jwt',
         url: 'http://127.0.0.1:8000',
         token: {
@@ -79,6 +79,13 @@ export default {
 
   headlessui: {
     prefix: 'Headless'
+  },
+
+  loading: {
+    color: 'DodgerBlue',
+    height: '5px',
+    continuous: true,
+    duration: 1000
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
