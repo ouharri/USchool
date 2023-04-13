@@ -3,12 +3,12 @@ export default {
   head: {
     title: 'frontend',
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
+      {charset: 'utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {hid: 'description', name: 'description', content: ''},
+      {name: 'format-detection', content: 'telephone=no'},
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -44,7 +44,7 @@ export default {
     credentials: true,
     proxyHeaders: false,
     proxy: false,
-    retry: { retries: 3 },
+    retry: {retries: 3},
     debug: false,
     middleware: ['csrf'],
   },
@@ -63,6 +63,21 @@ export default {
         },
       },
     },
+  },
+
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+          path: '*',
+          component: resolve(__dirname, 'pages/index.vue'),
+        },
+        {
+          name: 'login',
+          path: '/login',
+          component: resolve(__dirname, 'pages/auth/login.vue'),
+        }
+      )
+    }
   },
 
   // TailwindCSS module configuration: https://tailwindcss.nuxtjs.org/setup

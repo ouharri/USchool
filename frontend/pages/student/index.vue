@@ -577,15 +577,21 @@
       </header>
     </div>
   </div>
-
-
-  </div>
 </template>
 
 <script>
 export default {
   name: "index",
+  middleware: 'auth',
+  mounted() {
+    this.$auth.logout();
+    console.log(this.$auth.user)
+    this.$auth.refreshTokens()
+  }
 }
+</script>
+
+<script setup>
 </script>
 
 <style scoped>
