@@ -21,7 +21,11 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ['@nuxtjs/tailwindcss'],
+  buildModules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/composition-api/module',
+    ['@pinia/nuxt', { disableVuex: false }],
+  ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -35,7 +39,6 @@ export default {
     '@nuxtjs/auth-next',
     //https://pinia.vuejs.org/
     '@pinia/nuxt',
-    'nuxt-headlessui',
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
