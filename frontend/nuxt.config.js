@@ -15,7 +15,10 @@ export default {
   css: ['@/assets/css/tailwind.css', 'element-ui/lib/theme-chalk/index.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['@/plugins/element-ui'],
+  plugins: [
+    '@/plugins/element-ui',
+    {src: '@/plugins/jquery.js', mode: 'client', ssr: false}
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -24,7 +27,7 @@ export default {
   buildModules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/composition-api/module',
-    ['@pinia/nuxt', { disableVuex: false }],
+    ['@pinia/nuxt', {disableVuex: false}],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
