@@ -27,12 +27,14 @@
         </a>
       </div>
       <!-- Search input -->
-      <div class="flex justify-center flex-1 lg:mr-32" @mouseleave=" IsActiveSearchInput && !IsFocusSearchInput  ? toggleSearchInput() : null">
+      <div class="flex justify-center flex-1 lg:mr-32"
+           @mouseleave=" IsActiveSearchInput && !IsFocusSearchInput  ? toggleSearchInput() : null">
         <div :class="`focus-within:text-${this.theme.primary}`"
              class="relative w-full flex max-w-xl mx-2 sm:mx-6">
           <div @click="toggleSearchInput"
                class="md:absolute inset-y-0 z-20 h-full cursor-pointer flex justify-center bg-gray-100 items-center sm:bg-transparent transition duration-700 ease-in-out"
                :class="IsActiveSearchInput?'absolute ml-2':'w-8 h-8 rounded-full sm:bg-transparent dark:bg-gray-700 block'"
+               cd backennd
           >
             <svg class="w-4 h-4 my-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd"

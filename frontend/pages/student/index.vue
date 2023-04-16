@@ -1,14 +1,14 @@
 <template>
-<div>
-  hhh
-</div>
+  <div>
+    hhh
+  </div>
 </template>
 
 <script>
 
 export default {
   middleware: 'auth',
-  layout:'student/main',
+  layout: 'student/main',
 }
 </script>
 

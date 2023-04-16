@@ -12,7 +12,7 @@ export default {
   },
 
   server: {
-    host: '0.0.0.0' ,// default: localhost
+    host: '0.0.0.0',// default: localhost
     port: 3000
   },
   // php artisan serv --host="172.16.8.29" --port=8080
