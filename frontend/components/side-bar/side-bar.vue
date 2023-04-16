@@ -17,7 +17,7 @@
           <ul class="mt-6">
             <li class="relative px-6 py-3">
             <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg"
-                  aria-hidden="true" :class="`bg-${this.theme.primary}-600`"></span>
+                  aria-hidden="true" :class="`bg-${this.theme.primary}`"></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
                 href="index.html">
@@ -171,8 +171,14 @@ defineProps(['theme'])
 </script>
 
 <style scoped>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 #left-sidebar {
 //filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+}
+.bg-blue-600{
+  background-color: #0070C9;
 }
 
 #left-sidebar {

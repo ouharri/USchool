@@ -15,6 +15,7 @@ export default {
     host: '0.0.0.0' ,// default: localhost
     port: 3000
   },
+  // php artisan serv --host="172.16.8.29" --port=8080
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/css/tailwind.css', 'element-ui/lib/theme-chalk/index.css'],
@@ -51,7 +52,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://172.16.8.29:8080/api',
+    baseURL: 'http://172.16.8.29:8080/api/',
     credentials: true,
     proxyHeaders: false,
     proxy: false,

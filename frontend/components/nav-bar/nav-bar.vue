@@ -4,7 +4,7 @@
   >
     <div
       :class="`text-${this.theme.primary} dark:text-${this.theme.accent} ${IsActiveSearchInput ? 'pr-[1px]' : ''}`"
-      class="container flex items-center justify-between h-full px-6 mx-auto transition duration-700 ease-in-out"
+      class="container flex items-center justify-between h-full px-6 mx-auto transition duration-700 ease-in-out sm:pr-6"
     >
       <!-- Mobile hamburger -->
       <button class="p-1 mr-5 my-1 -ml-1 rounded-md md:hidden focus:outline-none"
@@ -27,13 +27,12 @@
         </a>
       </div>
       <!-- Search input -->
-      <div class="flex justify-center flex-1 lg:mr-32"
-           @mouseleave="IsActiveSearchInput? toggleSearchInput() : ''">
+      <div class="flex justify-center flex-1 lg:mr-32" @mouseleave=" IsActiveSearchInput && !IsFocusSearchInput  ? toggleSearchInput() : null">
         <div :class="`focus-within:text-${this.theme.primary}`"
              class="relative w-full flex max-w-xl mx-2 sm:mx-6">
           <div @click="toggleSearchInput"
-               class="md:absolute inset-y-0 z-20 h-full cursor-pointer flex justify-center items-center sm:bg-transparent transition duration-700 ease-in-out"
-               :class="IsActiveSearchInput?'absolute ml-2':'w-8 h-8 rounded-full bg-gray-100 sm:bg-transparent dark:bg-gray-700 block'"
+               class="md:absolute inset-y-0 z-20 h-full cursor-pointer flex justify-center bg-gray-100 items-center sm:bg-transparent transition duration-700 ease-in-out"
+               :class="IsActiveSearchInput?'absolute ml-2':'w-8 h-8 rounded-full sm:bg-transparent dark:bg-gray-700 block'"
           >
             <svg class="w-4 h-4 my-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd"
@@ -42,11 +41,11 @@
               </path>
             </svg>
           </div>
-          <input
-            class="w-full md:block pl-8 sm:pr-2 py-2 text-sm text-gray-700 placeholder-gray-600 z-10 bg-gray-100 border-0 rounded-full peer-placeholder-shown:-translate-y-1/2 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 form-input transition duration-700 ease-linear"
-            :class="'focus:border-'+this.theme.accent+' focus:outline-none focus:shadow-outline-'+this.theme.primary + (IsActiveSearchInput ? '' : ' hidden')"
-            type="text" placeholder="      Search in USchool" aria-label="Search"/>
-          <div v-show="IsActiveSearchInput" style="border-radius:16px"
+          <input @focusin="focusSearchInput" @focusout="handleSearchInput"
+                 class="w-full md:block pl-8 sm:pr-2 py-2 text-sm text-gray-700 placeholder-gray-600 z-10 bg-gray-100 border-0 rounded-full peer-placeholder-shown:-translate-y-1/2 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 form-input transition duration-700 ease-linear"
+                 :class="'focus:border-'+this.theme.accent+' focus:outline-none focus:shadow-outline-'+this.theme.primary + (IsActiveSearchInput ? '' : ' hidden')"
+                 type="text" placeholder="      Search in USchool" aria-label="Search"/>
+          <div v-if="IsActiveSearchInput" style="border-radius:18px"
                class="text-sm absolute top-0 h-fit shadow-lg w-full right-0 pt-10 mx-auto text-gray-700 border-0 rounded-lg form-input bg-gray-100 dark:bg-gray-700 opacity-75">
             ff
             <br>ff
@@ -209,7 +208,7 @@
 
 <script setup>
 import {ref} from "vue";
-import { useCounterStore } from '~/stores/student'
+import {useCounterStore} from '~/stores/student'
 
 const store = useCounterStore()
 
@@ -221,20 +220,37 @@ defineProps([
 ])
 
 
-
 const IsActiveSearchInput = ref(false);
+const IsFocusSearchInput = ref(false);
 
 function toggleSearchInput() {
   IsActiveSearchInput.value = !IsActiveSearchInput.value;
 }
 
+function focusSearchInput() {
+  toggleSearchInput()
+  IsFocusSearchInput.value = !IsFocusSearchInput.value;
+}
+
+function handleSearchInput() {
+  focusSearchInput();
+  if (IsActiveSearchInput.value) {
+    toggleSearchInput();
+  }
+}
+
 </script>
 
 <style scoped>
-.text-blue{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-blue {
   color: #0070C9;
 }
-.text-dark-blue{
+
+.text-dark-blue {
   color: #1F2937;
 }
 </style>

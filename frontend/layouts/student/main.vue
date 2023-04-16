@@ -33,12 +33,16 @@ export default {
         JSON.parse(localStorage.getItem("theme"))
         : window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches ?
-          {mode: 'dark', primary: 'blue-600',accent :'blue-400' } : {mode: 'light',primary: 'blue-600',accent :'blue-400'};
+          {mode: 'dark', primary: 'blue-600', accent: 'blue-400'} : {
+            mode: 'light',
+            primary: 'blue-600',
+            accent: 'blue-400'
+          };
     }
   },
   data() {
     return {
-      theme: ref({mode: 'dark',primary: 'blue-600',accent :'blue-400'}),
+      theme: ref({mode: 'dark', primary: 'blue-600', accent: 'blue-400'}),
       SideMenuFlag: true,
     }
   },
@@ -80,7 +84,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
 .screen {
   overflow-y: auto;
   overflow-x: hidden;
