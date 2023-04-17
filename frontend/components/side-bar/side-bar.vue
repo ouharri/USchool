@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="min-h-screen min-w-full z-10 absolute top-0 right-0 bg-gray-500 dark:bg-gray-300 hidden transition duration-100 ease-in opacity-[20%] transition duration-700 ease-in-out"
+      class="min-h-screen min-w-full z-10 absolute top-0 right-0 bg-gray-500 dark:bg-gray-300 hidden transition ease-in opacity-[20%] transition duration-700 ease-in-out"
       id="bg-sidebar" @click="$emit('toggleSideMenu')"></div>
     <aside id="left-sidebar"
            class="z-20 hidden w-64 overflow-y-hidden bg-white z-40 dark:bg-gray-800 md:block flex-shrink-0 h-screen transition duration-700 ease-in-out">

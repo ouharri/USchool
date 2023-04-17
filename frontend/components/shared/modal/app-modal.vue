@@ -1,7 +1,9 @@
 <template>
-  <div v-show="IsOpenModal"
-       class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto flex justify-center items-center md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div :class="`max-w-${size}`" class="relative w-full max-h-full">
+  <div v-if="isOpenAppModal"
+       class="fixed top-0 left-0 right-0 w-full p-4 z-50 overflow-x-hidden overflow-y-auto flex justify-center transition duration-700 ease-in-out items-center md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div
+      class="min-h-screen min-w-full z-30 absolute top-0 right-0 bg-gray-500 dark:bg-gray-700 transition ease-in opacity-20 transition duration-700 ease-in-out"></div>
+    <div :class="`max-w-${size}`" class="relative w-full max-h-full z-50 opacity-100">
       <!-- Modal content -->
       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
         <!-- Modal header -->
@@ -9,7 +11,7 @@
           <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
             <slot name="header"></slot>
           </h3>
-          <button type="button"
+          <button type="button" @click="closeAppModal"
                   class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd"
@@ -25,7 +27,7 @@
         <!-- Modal footer -->
         <div
           class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-          <button @close="closeModel" type="button"
+          <button @click="closeAppModal" type="button"
                   class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
             Cancel
           </button>
@@ -40,32 +42,31 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {defineProps, defineEmits} from 'vue';
+
+const emit = defineEmits(['update:isAccepted', 'update:isOpenAppModal']);
 
 defineProps({
   'size': {
     type: String,
     default: '2xl',
   },
-  'IsOpenModal': {
+  'isOpenAppModal': {
     type: Boolean,
     default: false,
   },
 })
 
-const IsOpenModal = ref(false);
-const emit = defineEmits(['inFocus', 'submit']);
-
-function closeModel() {
-  IsOpenModal.value = false;
+function closeAppModal() {
+  emit('update:isOpenAppModal', false);
 }
 
 function IsAccepted() {
-  IsOpenModal.value = false;
-  emit('accepted');
+  emit('update:isAccepted');
 }
 
 </script>
+
 
 <style scoped>
 
