@@ -1,3 +1,4 @@
+const apiUrl = 'http://127.0.0.1:8000';
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -52,7 +53,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://172.16.8.29:8080/api/',
+    baseURL: apiUrl + '/api/',
     credentials: true,
     proxyHeaders: false,
     proxy: false,
@@ -65,7 +66,7 @@ export default {
     strategies: {
       USchool: {
         provider: 'laravel/jwt',
-        url: 'http://172.16.8.29:8080',
+        url: apiUrl,
         token: {
           property: 'access_token',
           maxAge: 60 * 60,

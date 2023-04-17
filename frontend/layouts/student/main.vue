@@ -1,5 +1,5 @@
 <template>
-  <div :class="this.theme.mode">
+  <div :class="theme.mode">
     <div class="flex h-screen bg-gray-100 dark:bg-gray-900 max-h-screen screen transition duration-700 ease-in-out">
       <side-bar
         @toggleSideMenu="toggleSideMenu"
@@ -13,7 +13,9 @@
           :theme="theme"
         ></nav-bar>
         <main class="h-full overflow-y-auto">
-          <nuxt/>
+          <div class="container grid px-6 mx-auto">
+            <nuxt/>
+          </div>
         </main>
       </div>
     </div>
@@ -22,7 +24,7 @@
 
 <script>
 import {initDropdowns} from "flowbite";
-import {ref} from "vue";
+import {reactive} from "vue";
 
 export default {
   name: "index",
@@ -31,18 +33,29 @@ export default {
     if (process.client) {
       this.theme = localStorage.getItem("theme") !== null ?
         JSON.parse(localStorage.getItem("theme"))
-        : window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches ?
-          {mode: 'dark', primary: 'blue-600', accent: 'blue-400'} : {
-            mode: 'light',
+        :
+        {
+          mode: window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light',
+          color: {
             primary: 'blue-600',
             accent: 'blue-400'
-          };
+          }
+        };
     }
   },
   data() {
     return {
-      theme: ref({mode: 'dark', primary: 'blue-600', accent: 'blue-400'}),
+      theme: reactive(
+        {
+          mode: process.client ? window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light' : 'dark',
+          color: {
+            primary: 'blue-600',
+            accent: 'blue-400'
+          }
+        }
+      ),
       SideMenuFlag: true,
     }
   },
@@ -53,11 +66,6 @@ export default {
     },
     toggleTheme() {
       this.theme.mode = this.theme.mode === 'dark' ? 'light' : 'dark';
-      console.log(process.client ? localStorage.getItem("theme") !== null ?
-        JSON.parse(localStorage.getItem("theme")).mode
-        : window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches ?
-          'dark' : 'light' : 'light');
       process.client ? localStorage.setItem('theme', JSON.stringify(this.theme)) : null;
     },
     async toggleSideMenu() {
@@ -85,7 +93,6 @@ export default {
 </script>
 
 <style>
-
 .screen {
   overflow-y: auto;
   overflow-x: hidden;

@@ -1,15 +1,15 @@
 <template>
   <header class="py-2.5 bg-white dark:bg-gray-800 transition duration-700 ease-in-out"
-          :class="`text-${this.theme.primary} dark:text-${this.theme.accent}`"
+          :class="`text-${theme.color.primary} dark:text-${theme.color.accent}`"
   >
     <div
-      :class="`text-${this.theme.primary} dark:text-${this.theme.accent} ${IsActiveSearchInput ? 'pr-[1px]' : ''}`"
+      :class="`text-${theme.color.primary} dark:text-${theme.color.accent} ${IsActiveSearchInput ? 'pr-[1px]' : ''}`"
       class="container flex items-center justify-between h-full px-6 mx-auto transition duration-700 ease-in-out sm:pr-6"
     >
       <!-- Mobile hamburger -->
       <button class="p-1 mr-5 my-1 -ml-1 rounded-md md:hidden focus:outline-none"
               aria-label="Menu" id="menu-toggle" @click="$emit('toggleSideMenu')"
-              :class="`focus:shadow-outline-${this.theme.primary}`">
+              :class="`focus:shadow-outline-${theme.color.primary}`">
         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path
             stroke-linecap="round"
@@ -27,14 +27,12 @@
         </a>
       </div>
       <!-- Search input -->
-      <div class="flex justify-center flex-1 lg:mr-32"
-           @mouseleave=" IsActiveSearchInput && !IsFocusSearchInput  ? toggleSearchInput() : null">
-        <div :class="`focus-within:text-${this.theme.primary}`"
+      <div class="flex justify-center flex-1 lg:mr-32" @mouseleave=" IsActiveSearchInput && !IsFocusSearchInput  ? toggleSearchInput() : null">
+        <div :class="`focus-within:text-${theme.color.primary}`"
              class="relative w-full flex max-w-xl mx-2 sm:mx-6">
           <div @click="toggleSearchInput"
-               class="md:absolute inset-y-0 z-20 h-full cursor-pointer flex justify-center bg-gray-100 items-center sm:bg-transparent transition duration-700 ease-in-out"
-               :class="IsActiveSearchInput?'absolute ml-2':'w-8 h-8 rounded-full sm:bg-transparent dark:bg-gray-700 block'"
-               cd backennd
+               class="md:absolute bg-gray-100 inset-y-0 z-20 h-full w-8 h-8 rounded-full cursor-pointer flex justify-center dark:bg-gray-700 items-center sm:bg-transparent transition duration-1000 ease-in-out"
+               :class="IsActiveSearchInput?'absolute ':'md:bg-transparent block'"
           >
             <svg class="w-4 h-4 my-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd"
@@ -44,8 +42,8 @@
             </svg>
           </div>
           <input @focusin="focusSearchInput" @focusout="handleSearchInput"
-                 class="w-full md:block pl-8 sm:pr-2 py-2 text-sm text-gray-700 placeholder-gray-600 z-10 bg-gray-100 border-0 rounded-full peer-placeholder-shown:-translate-y-1/2 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 form-input transition duration-700 ease-linear"
-                 :class="'focus:border-'+this.theme.accent+' focus:outline-none focus:shadow-outline-'+this.theme.primary + (IsActiveSearchInput ? '' : ' hidden')"
+                 class="w-full md:block pl-8 bg-gray-100 sm:pr-2 py-2 text-sm text-gray-700 placeholder-gray-600 z-10 border-0 rounded-full peer-placeholder-shown:-translate-y-1/2 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 form-input transition duration-700 ease-linear"
+                 :class="'focus:border-'+theme.color.accent+' focus:outline-none focus:shadow-outline-'+theme.color.primary + (IsActiveSearchInput ? '' : ' hidden')"
                  type="text" placeholder="      Search in USchool" aria-label="Search"/>
           <div v-if="IsActiveSearchInput" style="border-radius:18px"
                class="text-sm absolute top-0 h-fit shadow-lg w-full right-0 pt-10 mx-auto text-gray-700 border-0 rounded-lg form-input bg-gray-100 dark:bg-gray-700 opacity-75">
@@ -66,7 +64,7 @@
         <ul class="flex items-center flex-shrink-0 space-x-6">
           <!-- Theme toggle -->
           <li class="flex" @click="$emit('toggleTheme')">
-            <button :class="`focus:shadow-outline-${this.theme.accent}`"
+            <button :class="`focus:shadow-outline-${theme.color.accent}`"
                     class="focus:outline-none block">
               <template v-if=" theme.mode !== 'dark' ">
                 <svg class="w-5 h-5 my-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -87,7 +85,7 @@
             <button class="relative align-middle rounded-md "
                     data-dropdown-toggle="NotificationsMenu" data-dropdown-delay="500"
                     data-dropdown-trigger="hover"
-                    :class="`focus:outline-${this.theme.accent} focus:shadow-outline-${this.theme.primary}`">
+                    :class="`focus:outline-${theme.color.accent} focus:shadow-outline-${theme.color.primary}`">
               <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z">
@@ -230,7 +228,7 @@ function toggleSearchInput() {
 }
 
 function focusSearchInput() {
-  toggleSearchInput()
+  IsActiveSearchInput.value = true;
   IsFocusSearchInput.value = !IsFocusSearchInput.value;
 }
 
@@ -243,7 +241,7 @@ function handleSearchInput() {
 
 </script>
 
-<style scoped>
+<style>
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
