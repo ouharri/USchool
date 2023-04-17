@@ -19,7 +19,10 @@ export default {
   // php artisan serv --host="172.16.8.29" --port=8080
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/css/tailwind.css', 'element-ui/lib/theme-chalk/index.css'],
+  css: [
+    '@/assets/css/tailwind.css',
+    '@/assets/css/main.css',
+    'element-ui/lib/theme-chalk/index.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [

@@ -1,0 +1,30 @@
+/*  Model transition  */
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+/* Scroll bar */
+.overflow {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.overflow::-webkit-scrollbar {
+  width: 5px;
+}
+
+.overflow::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow:hover::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(141, 141, 141, 0.42);
+}

@@ -1,78 +1,113 @@
 <template>
   <div>
-    <div
-      v-if="isModalOpen"
-      class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
-    >
-      <!-- Modal -->
-      <div
-        v-if="isModalOpen"
-        class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
-        role="dialog"
-        id="modal"
-      >
-        <!-- Remove header if you don't want a close icon. Use modal body to place modal tile. -->
-        <header class="flex justify-end">
-          <button
-            class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
-            aria-label="close"
-            @click="closeModal"
-          >
-            <svg
-              class="w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              role="img"
-              aria-hidden="true"
-            >
-              <path
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-                fill-rule="evenodd"
-              ></path>
-            </svg>
-          </button>
-        </header>
-        <!-- Modal body -->
-        <div class="mt-4 mb-6">
-          <!-- Modal title -->
-          <p
-            class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
-          >
-            Modal header
-          </p>
-          <!-- Modal description -->
-          <p class="text-sm text-gray-700 dark:text-gray-400">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum et
-            eligendi repudiandae voluptatem tempore!
-          </p>
-        </div>
-        <footer
-          class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800"
-        >
-          <button
-            @click="closeModal"
-            class="w-full px-5 py-3 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"
-          >
-            Cancel
-          </button>
-          <button
-            class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-          >
-            Accept
-          </button>
-        </footer>
-      </div>
-    </div>
     <!-- Main modal -->
-    <app-modal :isOpenAppModal="openAppModal"
-           @update:isOpenAppModal="openAppModal = $event"
-           @update:isAccepted="alert('fff')" size="xl"
+    <app-modal
+      :isOpenAppModal="openAppModal"
+      @update:isOpenAppModal="openAppModal = $event"
+      @update:isAccepted="alert('fff')" size="4xl"
     >
       <template v-slot:header>
         hhhh
       </template>
+      <template v-slot:body>
+
+        <form>
+          <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div>
+              <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First
+                name</label>
+              <input type="text" id="first_name"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="John" required>
+            </div>
+            <div>
+              <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
+                name</label>
+              <input type="text" id="last_name"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="Doe" required>
+            </div>
+            <div>
+              <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company</label>
+              <input type="text" id="company"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="Flowbite" required>
+            </div>
+            <div>
+              <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
+                number</label>
+              <input type="tel" id="phone"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
+            </div>
+            <div>
+              <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website
+                URL</label>
+              <input type="url" id="website"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="flowbite.com" required>
+            </div>
+            <div>
+              <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Unique visitors
+                (per month)</label>
+              <input type="number" id="visitors"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="" required>
+            </div>
+          </div>
+          <div class="mb-6">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
+              address</label>
+            <input type="email" id="email"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="john.doe@company.com" required>
+          </div>
+          <div class="mb-6">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <input type="password" id="password"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="•••••••••" required>
+          </div>
+          <div class="mb-6">
+            <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
+              password</label>
+            <input type="password" id="confirm_password"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="•••••••••" required>
+          </div>
+          <div class="flex items-start mb-6">
+            <div class="flex items-center h-5">
+              <input id="remember" type="checkbox" value=""
+                     class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                     required>
+            </div>
+            <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a
+              href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+          </div>
+          <button type="submit"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Submit
+          </button>
+        </form>
+
+      </template>
+
+      <template v-slot:footer>
+      </template>
     </app-modal>
+
+    <del-modal
+      :isOpenDelModal="openDelModal"
+      @update:isOpenDelModal="openDelModal = $event"
+      @update:isAcceptedDelModal="alert('fff')"
+    >
+      <template v-slot:header>
+        Are you sure you want to delete this item ?
+      </template>
+      <template v-slot:body>
+      </template>
+    </del-modal>
+
   </div>
 </template>
 
@@ -87,13 +122,11 @@ export default {
 <script setup>
 import {ref} from "vue";
 import AppModal from "~/components/shared/modal/app-modal.vue";
+import DelModal from "~/components/shared/modal/del-modal.vue";
 
-const isModalOpen = ref(true);
+const openDelModal = ref(true);
 const openAppModal = ref(true);
 
-function closeModal() {
-  isModalOpen.value = false;
-}
 
 </script>
 
