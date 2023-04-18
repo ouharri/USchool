@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'first_name' => 'outman',
             'last_name' => 'ouharri',
             'email' => 'ouharrioutman@gmail.com',
+            'avatar' => 'https://res.cloudinary.com/dggvib6ib/image/upload/v1681812034/ts_zdrfoj.jpg',
             'email_verified_at' => now(),
             'password' => bcrypt('123456789'), // password
             'remember_token' => Str::random(10),
