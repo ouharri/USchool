@@ -84,8 +84,14 @@ class RoleController extends Controller
      */
     public function givePermission(StorePermissionRequest $request, Role $role): JsonResponse
     {
-
-//        return response()->json(['message' => 'Permission given.'], 200);
+        if (Permission::where('name', $request->name)->doesntExist()) {
+            return response()->json(['message' => 'Permission not exist.'], 500);
+        }
+        if ($role->hasPermissionTo($request->name)) {
+            return response()->json(['message' => 'Permission already exist.'], 500);
+        }
+        $role->givePermissionTo($request->name);
+        return response()->json(['message' => 'Permission given.'], 200);
     }
 
     /**

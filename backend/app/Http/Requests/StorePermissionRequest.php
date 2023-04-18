@@ -24,7 +24,7 @@ class StorePermissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'permission' => 'required|min:3|unique:roles'
+            'name' => 'required|min:1'
         ];
     }
 
