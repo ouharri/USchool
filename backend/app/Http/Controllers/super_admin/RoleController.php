@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePermissionRequest;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -19,10 +20,10 @@ class RoleController extends Controller
     {
         try {
             $roles = Role::all();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
-        return response()->json($roles, 200);
+        return response()->json($roles);
     }
 
     /**
@@ -35,11 +36,11 @@ class RoleController extends Controller
         }
         try {
             Role::create($request->all());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
         return response()
-            ->json(['message' => 'Role created successfully'], 200);
+            ->json(['message' => 'Role created successfully']);
     }
 
     /**
@@ -57,11 +58,11 @@ class RoleController extends Controller
     {
         try {
             $role->update($request->all());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
         return response()
-            ->json(['message' => 'Role updated successfully'], 200);
+            ->json(['message' => 'Role updated successfully']);
 
     }
 
@@ -72,11 +73,11 @@ class RoleController extends Controller
     {
         try {
             $role->delete();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
         return response()
-            ->json(['message' => 'Role deleted successfully'], 200);
+            ->json(['message' => 'Role deleted successfully']);
     }
 
     /**
@@ -91,7 +92,7 @@ class RoleController extends Controller
             return response()->json(['message' => 'Permission already exist.'], 500);
         }
         $role->givePermissionTo($request->name);
-        return response()->json(['message' => 'Permission given.'], 200);
+        return response()->json(['message' => 'Permission given.']);
     }
 
     /**
@@ -102,10 +103,10 @@ class RoleController extends Controller
         if ($role->hasPermissionTo($permission)) {
             try {
                 $role->revokePermissionTo($permission);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 return response()->json(['message' => $e->getMessage()], 500);
             }
-            return response()->json(['message' => 'Permission revoked.'], 200);
+            return response()->json(['message' => 'Permission revoked.']);
         }
         return response()->json(['message' => 'Permission not exist.'], 500);
     }
