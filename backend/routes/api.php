@@ -51,7 +51,6 @@ Route::group([
     Route::group([
         'prefix' => 'permissions'
     ], static function ($router) {
-        Route::resource('/', PermissionController::class);
         Route::post('/{permission}/roles', [PermissionController::class, 'assignRole']);
         Route::delete('/{permission}/roles/{role}', [PermissionController::class, 'removeRole']);
     });

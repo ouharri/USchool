@@ -26,7 +26,7 @@ class UpdatePermissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:3|unique:roles'
+            'name' => 'required|min:3'
         ];
     }
 
@@ -45,17 +45,4 @@ class UpdatePermissionRequest extends FormRequest
             , 422));
     }
 
-    public function attributes(): array
-    {
-        return [
-            'name' => 'Role Name'
-        ];
-    }
-
-    public function roles(): array
-    {
-        return [
-            'name' => 'required|min:3'
-        ];
-    }
 }

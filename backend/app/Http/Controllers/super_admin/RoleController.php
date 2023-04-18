@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\super_admin;
 
+use Exception;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePermissionRequest;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
-use Exception;
 use Illuminate\Http\JsonResponse;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -14,7 +14,7 @@ use Spatie\Permission\Models\Role;
 class RoleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * get all roles
      */
     public function index(): JsonResponse
     {
@@ -44,14 +44,6 @@ class RoleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Role $role)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdateRoleRequest $request, Role $role): JsonResponse
@@ -63,7 +55,6 @@ class RoleController extends Controller
         }
         return response()
             ->json(['message' => 'Role updated successfully']);
-
     }
 
     /**

@@ -24,15 +24,15 @@ class StorePermissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:1'
+            'name' => 'required|min:3'
         ];
     }
 
     public function messages(): array
     {
         return [
-            'permission.required' => 'A name is required .',
-            'permission.min' => 'A name must be at least 3 characters .'
+            'name.required' => 'Permission name is required .',
+            'name.min' => 'Permission name must be at least 3 characters .'
         ];
     }
 
