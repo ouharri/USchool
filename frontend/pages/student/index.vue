@@ -116,6 +116,9 @@
 export default {
   middleware: 'auth',
   layout: 'student/main',
+  mounted() {
+    console.log(this.$auth.user)
+  }
 }
 </script>
 
@@ -126,6 +129,7 @@ import DelModal from "~/components/shared/modal/del-modal.vue";
 
 const openDelModal = ref(true);
 const openAppModal = ref(true);
+
 
 
 </script>

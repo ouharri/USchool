@@ -116,8 +116,11 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
 //             'expires_in' => Auth::factory()->getTTL() * 60,
-            'user' => Auth::user(),
-            'role' => RolesResource::collection(Auth::user()->roles()->get()),
+            'user' => array_merge(
+                (array)Auth::user(),
+                ['roles' => RolesResource::collection(Auth::user()->roles()->get()),
+                    'permissions' => Auth::user()->getAllPermissions()->pluck('name')
+                ]),
         ]);
     }
 }
