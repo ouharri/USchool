@@ -35,37 +35,38 @@ Route::group([
 
 Route::group([
     'middleware' => ['api', 'auth'],
+    'prefix' => 'super_admin'
 ], static function ($router) {
-    Route::apiResource('roles', RoleController::class);
-    Route::group([
-        'prefix' => 'roles'
-    ], static function ($router) {
-        Route::post('/{role}/permissions', [RoleController::class, 'givePermission']);
-        Route::delete('/{role}/permissions/{permission}', [RoleController::class, 'revokePermission']);
-    });
-});
 
-Route::group([
-    'middleware' => ['api', 'auth'],
-], static function ($router) {
-    Route::apiResource('/permissions', PermissionController::class);
-    Route::group([
-        'prefix' => 'permissions'
-    ], static function ($router) {
-        Route::post('/{permission}/roles', [PermissionController::class, 'assignRole']);
-        Route::delete('/{permission}/roles/{role}', [PermissionController::class, 'removeRole']);
+    Route::group([], static function ($router) {
+        Route::apiResource('roles', RoleController::class);
+        Route::group([
+            'prefix' => 'roles'
+        ], static function ($router) {
+            Route::post('/{role}/permissions', [RoleController::class, 'givePermission']);
+            Route::delete('/{role}/permissions/{permission}', [RoleController::class, 'revokePermission']);
+        });
     });
-});
 
-Route::group([
-    'middleware' => ['api', 'auth'],
-    'prefix' => 'users'
-], static function ($router) {
-    Route::get('/', [UserController::class, 'index']);
-    Route::get('/{user}', [UserController::class, 'show']);
-    Route::delete('/{user}', [UserController::class, 'destroy']);
-    Route::post('/{user}/roles', [UserController::class, 'assignRole']);
-    Route::delete('/{user}/roles/{role}', [UserController::class, 'removeRole']);
-    Route::post('/{user}/permissions', [UserController::class, 'givePermission']);
-    Route::delete('/{user}/permissions/{permission}', [UserController::class, 'revokePermission']);
+    Route::group([], static function ($router) {
+        Route::apiResource('/permissions', PermissionController::class);
+        Route::group([
+            'prefix' => 'permissions'
+        ], static function ($router) {
+            Route::post('/{permission}/roles', [PermissionController::class, 'assignRole']);
+            Route::delete('/{permission}/roles/{role}', [PermissionController::class, 'removeRole']);
+        });
+    });
+
+    Route::group([
+        'prefix' => 'users'
+    ], static function ($router) {
+        Route::get('/', [UserController::class, 'index']);
+        Route::get('/{user}', [UserController::class, 'show']);
+        Route::delete('/{user}', [UserController::class, 'destroy']);
+        Route::post('/{user}/roles', [UserController::class, 'assignRole']);
+        Route::delete('/{user}/roles/{role}', [UserController::class, 'removeRole']);
+        Route::post('/{user}/permissions', [UserController::class, 'givePermission']);
+        Route::delete('/{user}/permissions/{permission}', [UserController::class, 'revokePermission']);
+    });
 });
