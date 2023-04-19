@@ -121,6 +121,7 @@ class AuthController extends Controller
                 ['roles' => RolesResource::collection(Auth::user()->roles()->get()),
                     'permissions' => Auth::user()->getAllPermissions()->pluck('name')
                 ]),
+            'roles' => RolesResource::collection(Auth::user()->roles()->get()),
         ]);
     }
 }

@@ -117,7 +117,7 @@ export default {
   middleware: 'auth',
   layout: 'student/main',
   mounted() {
-    console.log(this.$auth.user)
+    console.log(this.$auth)
   }
 }
 </script>
