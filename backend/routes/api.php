@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\super_admin\PermissionController;
 use App\Http\Controllers\super_admin\RoleController;
+use App\Http\Controllers\super_admin\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,7 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user', [AuthController::class, 'userProfile']);
+    Route::get('/profile', [AuthController::class, 'userProfile']);
 });
 
 Route::group([
@@ -54,4 +55,17 @@ Route::group([
         Route::post('/{permission}/roles', [PermissionController::class, 'assignRole']);
         Route::delete('/{permission}/roles/{role}', [PermissionController::class, 'removeRole']);
     });
+});
+
+Route::group([
+    'middleware' => ['api', 'auth'],
+    'prefix' => 'users'
+], static function ($router) {
+    Route::get('/', [UserController::class, 'index']);
+    Route::get('/{user}', [UserController::class, 'show']);
+    Route::delete('/{user}', [UserController::class, 'destroy']);
+    Route::post('/{user}/roles', [UserController::class, 'assignRole']);
+    Route::delete('/{user}/roles/{role}', [UserController::class, 'removeRole']);
+    Route::post('/{user}/permissions', [UserController::class, 'givePermission']);
+    Route::delete('/{user}/permissions/{permission}', [UserController::class, 'revokePermission']);
 });
