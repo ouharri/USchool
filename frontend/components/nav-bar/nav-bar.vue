@@ -35,7 +35,7 @@
                class="md:absolute inset-y-0 z-20 h-full w-8 h-8 rounded-full cursor-pointer flex justify-center items-center bg-gray-100 dark:bg-gray-700 transition duration-700 ease-in-out search-div"
                :class="IsActiveSearchInput?'absolute ':'block'"
           >
-            <svg class="w-4 h-4 my-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-5 h-5 my-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd"
                     d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                     clip-rule="evenodd">
@@ -43,7 +43,7 @@
             </svg>
           </div>
           <input @focusin="focusSearchInput" @focusout="handleSearchInput"
-                 class="w-full md:block pl-8 bg-gray-100 sm:pr-2 py-2 text-sm text-gray-700 placeholder-gray-600 z-10 border-0 rounded-full peer-placeholder-shown:-translate-y-1/2 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 form-input transition duration-700 ease-in-out"
+                 class="w-full md:block pl-8 bg-gray-100 sm:pr-2 py-2.5 text-sm text-gray-700 placeholder-gray-600 z-10 border-0 rounded-full peer-placeholder-shown:-translate-y-1/2 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 form-input transition duration-700 ease-in-out"
                  :class="'focus:border-'+theme.color.accent+' focus:outline-none focus:shadow-outline-'+theme.color.primary + (IsActiveSearchInput ? '' : ' hidden')"
                  type="text" placeholder="      Search in USchool" aria-label="Search"/>
           <div v-if="IsActiveSearchInput" style="border-radius:18px"
