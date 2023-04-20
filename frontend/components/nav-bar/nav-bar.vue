@@ -27,10 +27,10 @@
         </a>
       </div>
       <!-- Search input -->
-      <div class="flex justify-center flex-1 lg:mr-32"
+      <div class="flex justify-center flex-1 lg:mr-32 transition duration-700 ease-in-out"
            @mouseleave=" IsActiveSearchInput && !IsFocusSearchInput  ? toggleSearchInput() : null">
         <div :class="`focus-within:text-${theme.color.primary}`"
-             class="relative w-full flex max-w-xl mx-2 sm:mx-6">
+             class="relative w-full flex max-w-xl mx-2 sm:mx-6 transition duration-700 ease-in-out">
           <div @click="toggleSearchInput"
                class="md:absolute inset-y-0 z-20 h-full w-8 h-8 rounded-full cursor-pointer flex justify-center items-center bg-gray-100 dark:bg-gray-700 transition duration-700 ease-in-out search-div"
                :class="IsActiveSearchInput?'absolute ':'block'"
@@ -43,7 +43,7 @@
             </svg>
           </div>
           <input @focusin="focusSearchInput" @focusout="handleSearchInput"
-                 class="w-full md:block pl-8 bg-gray-100 sm:pr-2 py-2 text-sm text-gray-700 placeholder-gray-600 z-10 border-0 rounded-full peer-placeholder-shown:-translate-y-1/2 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 form-input transition duration-700 ease-linear"
+                 class="w-full md:block pl-8 bg-gray-100 sm:pr-2 py-2 text-sm text-gray-700 placeholder-gray-600 z-10 border-0 rounded-full peer-placeholder-shown:-translate-y-1/2 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 form-input transition duration-700 ease-in-out"
                  :class="'focus:border-'+theme.color.accent+' focus:outline-none focus:shadow-outline-'+theme.color.primary + (IsActiveSearchInput ? '' : ' hidden')"
                  type="text" placeholder="      Search in USchool" aria-label="Search"/>
           <div v-if="IsActiveSearchInput" style="border-radius:18px"
