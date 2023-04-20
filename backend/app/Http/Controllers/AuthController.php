@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\users\PermissionResource;
 use App\Http\Resources\users\RolesResource;
 use App\Models\user;
 use Illuminate\Http\JsonResponse;
@@ -97,10 +98,19 @@ class AuthController extends Controller
      * Get the authenticated User.
      *
      * @return JsonResponse
+     * @throws \JsonException
      */
     public function userProfile(): JsonResponse
     {
-        return response()->json(Auth::user());
+        return response()->json(
+            array_merge(
+                (array)json_decode(Auth::user(), false, 512, JSON_THROW_ON_ERROR),
+                [
+                    'roles' => RolesResource::collection(Auth::user()->roles()->get()),
+                    'permissions' => PermissionResource::collection(Auth::user()->permissions()->get())
+                ]
+            )
+        );
     }
 
     /**
@@ -116,11 +126,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
 //             'expires_in' => Auth::factory()->getTTL() * 60,
-            'user' => array_merge(
-                (array)Auth::user(),
-                ['roles' => RolesResource::collection(Auth::user()->roles()->get()),
-                    'permissions' => Auth::user()->getAllPermissions()->pluck('name')
-                ]),
+            'user' => Auth::user(),
             'roles' => RolesResource::collection(Auth::user()->roles()->get()),
         ]);
     }

@@ -4,7 +4,7 @@
   >
     <div
       :class="`text-${theme.color.primary} dark:text-${theme.color.accent} ${IsActiveSearchInput ? 'pr-[1px]' : ''}`"
-      class="container flex items-center justify-between h-full px-6 mx-auto transition duration-700 ease-in-out sm:pr-6"
+      class="container flex items-center justify-between h-full px-6 mx-auto sm:pr-6"
     >
       <!-- Mobile hamburger -->
       <button class="p-1 mr-5 my-1 -ml-1 rounded-md md:hidden focus:outline-none"
@@ -27,12 +27,13 @@
         </a>
       </div>
       <!-- Search input -->
-      <div class="flex justify-center flex-1 lg:mr-32" @mouseleave=" IsActiveSearchInput && !IsFocusSearchInput  ? toggleSearchInput() : null">
+      <div class="flex justify-center flex-1 lg:mr-32"
+           @mouseleave=" IsActiveSearchInput && !IsFocusSearchInput  ? toggleSearchInput() : null">
         <div :class="`focus-within:text-${theme.color.primary}`"
              class="relative w-full flex max-w-xl mx-2 sm:mx-6">
           <div @click="toggleSearchInput"
-               class="md:absolute bg-gray-100 inset-y-0 z-20 h-full w-8 h-8 rounded-full cursor-pointer flex justify-center dark:bg-gray-700 items-center sm:bg-transparent transition duration-1000 ease-in-out"
-               :class="IsActiveSearchInput?'absolute ':'md:bg-transparent block'"
+               class="md:absolute inset-y-0 z-20 h-full w-8 h-8 rounded-full cursor-pointer flex justify-center items-center bg-gray-100 dark:bg-gray-700 transition duration-700 ease-in-out search-div"
+               :class="IsActiveSearchInput?'absolute ':'block'"
           >
             <svg class="w-4 h-4 my-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd"
@@ -242,15 +243,17 @@ function handleSearchInput() {
 </script>
 
 <style>
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .text-blue {
   color: #0070C9;
 }
 
 .text-dark-blue {
   color: #1F2937;
+}
+
+@media (min-width: 768px) {
+  .search-div {
+    background: transparent !important;
+  }
 }
 </style>

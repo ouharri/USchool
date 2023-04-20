@@ -1,9 +1,9 @@
 <template>
-  <div
-    v-if="isOpenDelModal"
-    class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
-  >
-    <Transition>
+  <Transition>
+    <div
+      v-if="isOpenDelModal"
+      class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
+    >
       <div
         v-if="isOpenDelModal"
         class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
@@ -37,7 +37,8 @@
           <p
             class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
           >
-            <svg v-if="activeIcon" aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none"
+            <svg v-if="activeIcon" aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200"
+                 fill="none"
                  stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -67,8 +68,8 @@
           </button>
         </footer>
       </div>
-    </Transition>
-  </div>
+    </div>
+  </Transition>
 </template>
 
 <script setup>
