@@ -22,12 +22,13 @@ export default {
   css: [
     '@/assets/css/tailwind.css',
     '@/assets/css/main.css',
-    'element-ui/lib/theme-chalk/index.css'],
+    'element-ui/lib/theme-chalk/index.css'
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/element-ui',
-    {src: '@/plugins/jquery.js', mode: 'client', ssr: false}
+    {src: '@/plugins/jquery.js', mode: 'client', ssr: false},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
