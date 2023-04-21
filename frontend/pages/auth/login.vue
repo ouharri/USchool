@@ -209,7 +209,7 @@ export default {
       ruleForm: {
         password: '',
         email: '',
-        checked: false,
+        remember_me: false,
       },
       rules: {
         email: [

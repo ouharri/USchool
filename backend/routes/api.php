@@ -34,7 +34,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['api', 'auth'],
+    'middleware' => ['api', 'auth','role:SUPER_ADMIN'],
     'prefix' => 'super_admin'
 ], static function ($router) {
 

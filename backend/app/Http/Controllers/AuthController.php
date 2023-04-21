@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\users\PermissionResource;
 use App\Http\Resources\users\RolesResource;
 use App\Models\user;
@@ -26,23 +27,23 @@ class AuthController extends Controller
     /**
      * Get a JWT via given credentials.
      *
-     * @param Request $request
+     * @param LoginRequest $request
      * @return JsonResponse
      */
-    public function login(Request $request): JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
         $credentials = $request->only(['email', 'password']);
+
         Auth::attempt($credentials);
+
+        if ($request->remember_me && !$token = auth()->setTTL(604800)->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+
         return $this->createNewToken($token);
     }
 
@@ -125,9 +126,10 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-             'expires_in' => auth()->factory()->getTTL() * 60,
+            'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => Auth::user(),
             'roles' => RolesResource::collection(Auth::user()->roles()->get()),
+            'permissions' => PermissionResource::collection(Auth::user()->permissions()->get())
         ]);
     }
 }

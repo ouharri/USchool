@@ -35,7 +35,7 @@
                class="md:absolute inset-y-0 z-20 h-full w-8 h-8 rounded-full cursor-pointer flex justify-center items-center bg-gray-100 dark:bg-gray-700 transition duration-700 ease-in-out search-div"
                :class="IsActiveSearchInput?'absolute ':'block'"
           >
-            <svg class="w-5 h-5 my-auto sm:ml-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-4 h-4 my-2 md:w-5 md:h-5 md:ml-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd"
                     d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                     clip-rule="evenodd">
