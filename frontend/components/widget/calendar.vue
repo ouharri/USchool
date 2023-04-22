@@ -25,9 +25,9 @@
         <div>Sat</div>
         <div>Sun</div>
       </div>
-      <div class="calendar-days grid sm:grid" id="calendar-days"></div>
+      <div class="calendar-days" id="calendar-days"></div>
     </div>
-<!--    <div class="calendar-footer"></div>-->
+    <div class="calendar-footer"></div>
     <div
       class="date-time-formate h-fit relative top-[100px] flex w-full align-middle items-center justify-center gap-7"
     >
@@ -102,14 +102,12 @@ export default {
     const dayTextFormate = document.querySelector(".day-text-formate");
     const timeFormate = document.querySelector(".time-formate");
     const dateFormate = document.querySelector(".date-formate");
-    const calendarDays = document.getElementById('calendar-days');
 
     month_picker.innerHTML = "";
 
     month_picker.onclick = () => {
       month_list.classList.remove("hideonce");
       month_list.classList.remove("hide");
-      calendarDays.classList.toggle("hidden");
       month_list.classList.add("show");
       dayTextFormate.classList.remove("showtime");
       dayTextFormate.classList.add("hidetime");
@@ -201,7 +199,6 @@ export default {
       month_list.append(month);
       month.onclick = () => {
         currentMonth.value = index;
-        calendarDays.classList.toggle("hidden");
         generateCalendar(currentMonth.value, currentYear.value);
         month_list.classList.replace("show", "hide");
         dayTextFormate.classList.remove("hideTime");
@@ -326,6 +323,7 @@ export default {
 }
 
 .calendar-days {
+  display: grid;
   justify-items: center;
   grid-template-columns: repeat(7, 1fr);
   /* gap: 10px; */
