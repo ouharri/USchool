@@ -28,3 +28,22 @@
   border-radius: 5px;
   background-color: rgba(141, 141, 141, 0.42);
 }
+
+
+/* theme color */
+
+.text-blue {
+  color: #0070C9;
+}
+
+.text-dark-blue {
+  color: #1F2937;
+}
+
+.bg-blue {
+  background-color: #0070C9;
+}
+
+.bg-dark-blue {
+  background-color: #1F2937;
+}

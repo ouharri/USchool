@@ -1,8 +1,8 @@
 <template>
   <div
-      class="calendar border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out overflow-hidden"
+    class="calendar border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out overflow-hidden"
   >
-    <div class="calendar-header bg-red-600 rounded-t-[12px]">
+    <div class="calendar-header rounded-t-[12px]" :class="`bg-${theme.color.primary}`">
       <span class="month-picker" id="month-picker"> May </span>
       <div class="year-picker" id="year-picker">
         <span class="year-change" id="pre-year">
@@ -29,16 +29,16 @@
     </div>
     <div class="calendar-footer"></div>
     <div
-        class="date-time-formate h-fit relative top-[100px] flex w-full align-middle items-center justify-center gap-7"
+      class="date-time-formate h-fit relative top-[100px] flex w-full align-middle items-center justify-center gap-7"
     >
-      <div class="day-text-formate border-r-4 border-red-600">TODAY</div>
+      <div class="day-text-formate border-r-4" :class="`border-${theme.color.primary}`">TODAY</div>
       <div class="date-time-value">
         <div class="time-formate">02:51:20</div>
         <div class="date-formate">23 - july - 2022</div>
       </div>
     </div>
     <div
-        class="month-list grid relative bottom-[25px] justify-center items-center border border-red-600 dark:text-gray-200 overflow-x-hidden"
+      class="month-list grid relative bottom-[25px] justify-center items-center border border-red-600 dark:text-gray-200 overflow-x-hidden hide"
     ></div>
   </div>
 </template>
@@ -46,7 +46,33 @@
 <script>
 export default {
   name: "calendar",
+  data() {
+    return {
+      theme:
+        {
+          mode: process.client ? window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light' : 'dark',
+          color: {
+            primary: 'blue-600',
+            accent: 'blue-400'
+          }
+        }
+    };
+  },
   mounted() {
+    if (process.client) {
+      this.theme = localStorage.getItem("theme") !== null ?
+        JSON.parse(localStorage.getItem("theme"))
+        :
+        {
+          mode: window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light',
+          color: {
+            primary: 'blue-600',
+            accent: 'blue-400'
+          }
+        };
+    }
     const isLeapYear = (year) => {
       return (
         (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
@@ -133,6 +159,7 @@ export default {
             month === currentDate.getMonth()
           ) {
             day.classList.add("current-date");
+            day.classList.add(`bg-${this.theme.color.primary}`);
           }
 
           if (
@@ -257,10 +284,7 @@ export default {
 }
 
 .calendar {
-  //height: 550px;
-  margin: 0;
-  border-radius: 25px;
-  overflow: hidden;
+//height: 550px; margin: 0; border-radius: 25px; overflow: hidden;
   padding: 20px 60px 0 60px;
 }
 
@@ -383,12 +407,10 @@ export default {
 
 .calendar-days div.current-date {
   color: var(--dark-text);
-  background-color: red;
   border-radius: 20%;
 }
 
 .current-date {
-  background-color: red !important;
   z-index: 10;
 }
 
@@ -495,6 +517,10 @@ export default {
 
 .hover\:bg-gray-200:hover {
   background-color: #818181 !important;
+}
+
+.border-blue-600{
+  border-color: #1c44ff !important;
 }
 
 @keyframes to-top {
