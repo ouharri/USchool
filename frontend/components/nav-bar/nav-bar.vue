@@ -83,7 +83,7 @@
           </li>
           <!-- Notifications menu -->
           <li class="relative">
-            <button class="relative align-middle rounded-md "
+            <button class="relative align-middle rounded-md"
                     data-dropdown-toggle="NotificationsMenu" data-dropdown-delay="500"
                     data-dropdown-trigger="hover"
                     :class="`focus:outline-${theme.color.accent} focus:shadow-outline-${theme.color.primary}`">
@@ -97,7 +97,7 @@
                     class="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-red-600 border-2 border-white rounded-full dark:border-gray-800"></span>
             </button>
             <template>
-              <div id="NotificationsMenu" class="hidden">
+              <div id="NotificationsMenu" class="hidden z-50">
                 <ul
                   class="absolute right-[-10px] w-56 p-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700">
                   <li class="flex">
@@ -143,7 +143,7 @@
                    alt=""/>
             </button>
             <template class="right-0">
-              <div id="profilDelay" class="hidden">
+              <div id="profilDelay" class="hidden z-50">
                 <ul
                   class="absolute right-[-10px] w-56 p-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
                   aria-labelledby="dropdownDelayButton">

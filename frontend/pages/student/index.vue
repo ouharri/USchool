@@ -8,7 +8,8 @@
         <div class="grid grid-cols-3 w-full gap-x-4 gap-y-4 h-full">
 
           <div class="w-full col-span-1">
-            <div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
+            <div
+              class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
               <div class="px-3 pt-8 pb-10 text-center relative z-10">
                 <h4 class="text-sm uppercase text-gray-500 leading-tight">Users</h4>
                 <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">3,682</h3>
@@ -20,7 +21,8 @@
             </div>
           </div>
           <div class="w-full col-span-1">
-            <div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
+            <div
+              class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
               <div class="px-3 pt-8 pb-10 text-center relative z-10">
                 <h4 class="text-sm uppercase text-gray-500 leading-tight">Subscribers</h4>
                 <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">11,427</h3>
@@ -32,23 +34,25 @@
             </div>
           </div>
           <div class="w-full col-span-1">
-              <div class="rounded-lg border relative border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out overflow-hidden">
-                <div class="px-3 pt-8 pb-10 text-center relative z-10">
-                  <h4 class="text-sm uppercase text-gray-500 leading-tight">Comments</h4>
-                  <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">8,028</h3>
-                  <p class="text-xs text-green-500 leading-tight">▲ 8.2%</p>
-                </div>
-                <div class="absolute bottom-0 inset-x-0">
-                  <canvas id="chart3" height="70"></canvas>
-                </div>
+            <div
+              class="rounded-lg border relative border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out overflow-hidden">
+              <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                <h4 class="text-sm uppercase text-gray-500 leading-tight">Comments</h4>
+                <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">8,028</h3>
+                <p class="text-xs text-green-500 leading-tight">▲ 8.2%</p>
               </div>
+              <div class="absolute bottom-0 inset-x-0">
+                <canvas id="chart3" height="70"></canvas>
+              </div>
+            </div>
           </div>
 
           <widget-weather class="col-span-2"></widget-weather>
 
           <div class="flex flex-col justify-between gap-y-4">
             <div class="w-full col-span-1">
-              <div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
+              <div
+                class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
                 <div class="px-3 pt-8 pb-10 text-center relative z-10">
                   <h4 class="text-sm uppercase text-gray-500 leading-tight">Comments</h4>
                   <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">8,028</h3>
@@ -60,7 +64,8 @@
               </div>
             </div>
             <div class="w-full col-span-1">
-              <div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
+              <div
+                class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
                 <div class="px-3 pt-8 pb-10 text-center relative z-10">
                   <h4 class="text-sm uppercase text-gray-500 leading-tight">Comments</h4>
                   <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">8,028</h3>
@@ -190,9 +195,18 @@
 
 <script>
 
+import {userStore} from "~/stores/user";
+
 export default {
-  middleware: 'auth',
+  async asyncData({ $auth }) {
+    const store = userStore()
+    store.user = $auth.user
+  },
+  middleware: ['auth', 'role'],
   layout: 'student/main',
+  meta: [
+    {role: 'SUPER_ADMIN'},
+  ],
   mounted() {
     console.log(this.$auth.user)
   }
@@ -202,11 +216,17 @@ export default {
 <script setup>
 import {onMounted, ref} from "vue";
 import Chart from '@/plugins/chart';
+import {userStore} from "~/stores/user";
 import AppModal from "~/components/shared/modal/app-modal.vue";
 import DelModal from "~/components/shared/modal/del-modal.vue";
 
 const openDelModal = ref(false);
 const openAppModal = ref(false);
+
+const user = userStore();
+
+
+console.log(user)
 
 
 const chartOptions = {

@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-full flex w-full">
-<!--    <img src="~/assets/images/invoice-circle2.png" class="fixed top-0 left-0 object-cover z-50" alt="" srcset="">-->
+    <!--    <img src="~/assets/images/invoice-circle2.png" class="fixed top-0 left-0 object-cover z-50" alt="" srcset="">-->
     <div
       class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 w-[50%]"
     >
@@ -155,7 +155,7 @@
               <div class="flex items-center justify-between">
                 <el-form-item>
                   <div class="flex items-center">
-                    <el-checkbox v-model="ruleForm.checked">
+                    <el-checkbox v-model="ruleForm.remember_me">
                       Remember me
                     </el-checkbox
                     >
@@ -202,6 +202,8 @@
 </template>
 
 <script>
+import {userStore} from "~/stores/user";
+
 export default {
   layout: 'auth',
   data() {
@@ -256,7 +258,13 @@ export default {
               message: 'welcome back ' + this.$auth.user.first_name + ' ' + this.$auth.user.last_name,
               type: 'success',
             })
-            this.$router.go(-2) || await this.$router.push({name: 'dashboard'});
+
+
+            userStore().user = this.$auth.user;
+            localStorage.setItem('user', JSON.stringify(this.$auth.user));
+
+            await this.$router.push({name: 'student'})
+            // || await this.$router.push({name: 'dashboard'});
           } catch (err) {
             this.$message({
               message: 'Email or password is incorrect',

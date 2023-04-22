@@ -38,7 +38,7 @@ export default {
   buildModules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/composition-api/module',
-    ['@pinia/nuxt', {disableVuex: false}],
+    ['@pinia/nuxt', {disableVuex: true}],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -80,6 +80,14 @@ export default {
         },
       },
     },
+  },
+
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
   },
 
   router: {
