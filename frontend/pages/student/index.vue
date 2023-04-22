@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
 
-    <h1 class="md:text-3xl text-2xl font-medium dark:text-white my-3">
+    <h1 class="md:text-3xl text-2xl font-medium dark:text-white my-4">
       👋Welcome back
       <a href="/profile" class="text-decoration-none text-gray-700 dark:text-gray-300">{{
           this.$auth.user.first_name
