@@ -1,8 +1,8 @@
 <template>
   <div
-    class="calendar border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out overflow-hidden"
+    class="calendar border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 dark:to-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out overflow-hidden"
   >
-    <div class="calendar-header rounded-t-[12px]" :class="`bg-${theme.color.primary}`">
+    <div class="calendar-header rounded-t-[12px] handle cursor-move" :class="`bg-${theme.color.primary}`">
       <span class="month-picker" id="month-picker"> May </span>
       <div class="year-picker" id="year-picker">
         <span class="year-change" id="pre-year">
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div
-      class="month-list grid relative bottom-[25px] justify-center items-center border border-red-600 dark:text-gray-200 overflow-x-hidden hide"
+      class="month-list grid relative bottom-[25px] justify-center items-center border dark:text-gray-200 overflow-x-hidden hide" :class="`border-${theme.color.primary}`"
     ></div>
   </div>
 </template>
@@ -417,6 +417,7 @@ export default {
 .month-list {
   color: var(--light-text);
   grid-template-columns: repeat(3, auto);
+  margin: 0 37px;
   border-radius: 20px;
 }
 
@@ -429,7 +430,7 @@ export default {
 
 .month-list > div > div {
   border-radius: 15px;
-  padding: 10px;
+  padding: 8px;
   cursor: pointer;
 }
 
@@ -459,11 +460,11 @@ export default {
 
 .date-time-formate {
   height: max-content;
-  font-family: Dubai Light, Century Gothic;
+  font-family: Dubai Light, Century Gothic,serif;
 }
 
 .day-text-formate {
-  font-family: Microsoft JhengHei UI;
+  font-family: Microsoft JhengHei UI,serif;
   font-size: 1.4rem;
   padding-right: 5%;
 }
@@ -590,7 +591,7 @@ export default {
 
 @media (max-width: 520px) {
   .calendar {
-    padding: 50px 50px 0px 50px;
+    padding: 50px 20px 0 20px;
   }
 
   .date-time-formate {
@@ -604,7 +605,7 @@ export default {
 
 @media (max-width: 421px) {
   .calendar {
-    padding: 50px 20px 0px 20px;
+    padding: 0;
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full cursor-pointer rounded-lg flex flex-col items-center text-center p-6 border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out">
+  <div class="w-full h-full cursor-pointer rounded-lg flex flex-col items-center text-center p-6 border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white  dark:from-gray-800 dark:to-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out">
     <div class="text-md font-bold flex flex-col"><span class="uppercase">Today</span> <span
       class="font-normal text-gray-700 text-sm">July 29</span></div>
     <div class="w-32 h-32 flex items-center justify-center">

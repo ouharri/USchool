@@ -28,7 +28,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/element-ui',
-    {src: '@/plugins/jquery.js', mode: 'client', ssr: false},
+    '@/plugins/sortable',
+    {src: '@/plugins/jquery', mode: 'client', ssr: false},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

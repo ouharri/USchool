@@ -1,80 +1,67 @@
 <template>
-  <div>
+  <div class="flex flex-col">
 
-    <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-x-5 gap-y-5">
+    <h1 class="md:text-3xl text-2xl font-medium dark:text-white my-3">
+      👋Welcome back
+      <a href="/profile" class="text-decoration-none text-gray-700 dark:text-gray-300">{{
+          this.$auth.user.first_name
+        }}</a>
+      <span :class="`text-${theme.color.primary}`">!</span>
+    </h1>
+
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-x-5 gap-y-5" v-sortable="{ handle: '.handle' }">
       <widget-calendar class="col-span-2"></widget-calendar>
-      <!--      <tstst></tstst>-->
       <div class="col-span-2 h-full">
-        <div class="grid grid-cols-3 w-full gap-x-4 gap-y-4 h-full">
+        <div class="grid grid-cols-3 w-full gap-x-4 gap-y-4 h-full" v-sortable="{ handle: '.handle' }">
 
-          <div class="w-full col-span-1">
-            <div
-              class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
-              <div class="px-3 pt-8 pb-10 text-center relative z-10">
-                <h4 class="text-sm uppercase text-gray-500 leading-tight">Users</h4>
-                <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">3,682</h3>
-                <p class="text-xs text-green-500 leading-tight">▲ 57.1%</p>
-              </div>
-              <div class="absolute bottom-0 inset-x-0">
-                <canvas id="chart1" height="70"></canvas>
-              </div>
-            </div>
-          </div>
-          <div class="w-full col-span-1">
-            <div
-              class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
-              <div class="px-3 pt-8 pb-10 text-center relative z-10">
-                <h4 class="text-sm uppercase text-gray-500 leading-tight">Subscribers</h4>
-                <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">11,427</h3>
-                <p class="text-xs text-red-500 leading-tight">▼ 42.8%</p>
-              </div>
-              <div class="absolute bottom-0 inset-x-0">
-                <canvas id="chart2" height="70"></canvas>
-              </div>
-            </div>
-          </div>
-          <div class="w-full col-span-1">
-            <div
-              class="rounded-lg border relative border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out overflow-hidden">
-              <div class="px-3 pt-8 pb-10 text-center relative z-10">
-                <h4 class="text-sm uppercase text-gray-500 leading-tight">Comments</h4>
-                <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">8,028</h3>
-                <p class="text-xs text-green-500 leading-tight">▲ 8.2%</p>
-              </div>
-              <div class="absolute bottom-0 inset-x-0">
-                <canvas id="chart3" height="70"></canvas>
-              </div>
-            </div>
-          </div>
+          <widget-statistique
+            class="col-span-1 handle"
+            :chartTitle="'USERS'"
+          ></widget-statistique>
 
-          <widget-weather class="col-span-2"></widget-weather>
+          <widget-statistique
+            class="col-span-1 handle"
+            :chartTitle="'SUBSCRIBERS'"
+            :chartColor="{
+              primary: 'rgba(246, 109, 155, 0.8)',
+              accent: 'rgba(246, 109, 155, 0.1)'
+            }"
+            :chartData="[1, 2, 1, 3, 5, 4, 7]"
+          ></widget-statistique>
 
-          <div class="flex flex-col justify-between gap-y-4">
-            <div class="w-full col-span-1">
-              <div
-                class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
-                <div class="px-3 pt-8 pb-10 text-center relative z-10">
-                  <h4 class="text-sm uppercase text-gray-500 leading-tight">Comments</h4>
-                  <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">8,028</h3>
-                  <p class="text-xs text-green-500 leading-tight">▲ 8.2%</p>
-                </div>
-                <div class="absolute bottom-0 inset-x-0">
-                  <canvas id="chart4" height="70"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="w-full col-span-1">
-              <div
-                class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white dark:from-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
-                <div class="px-3 pt-8 pb-10 text-center relative z-10">
-                  <h4 class="text-sm uppercase text-gray-500 leading-tight">Comments</h4>
-                  <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">8,028</h3>
-                  <p class="text-xs text-green-500 leading-tight">▲ 8.2%</p>
-                </div>
-                <div class="absolute bottom-0 inset-x-0">
-                  <canvas id="chart5" height="70"></canvas>
-                </div>
-              </div>
+          <widget-statistique
+            class="col-span-1 handle"
+            :chartTitle="'COMMENTS'"
+            :chartColor="{
+              primary: 'rgba(246, 153, 63, 0.8)',
+              accent: 'rgba(246, 153, 63, 0.1)'
+            }"
+            :chartData="[1, 2, 1, 3, 5, 4, 7]"
+          ></widget-statistique>
+
+          <div class="col-span-3 handle grid grid-cols-3 w-full gap-x-4 gap-y-4" v-sortable="{ handle: '.handle-h' }">
+            <widget-weather class="col-span-2 handle-h"></widget-weather>
+
+            <div class="flex flex-col justify-between gap-y-4 handle-h" v-sortable="{ handle: '.handle-v' }">
+              <widget-statistique
+                class="col-span-1 handle-v"
+                :chartTitle="'STUDENTS'"
+                :chartColor="{
+                primary: 'rgba(63,246,66,0.8)',
+                accent: 'rgba(63,246,66,0.1)'
+              }"
+                :chartData="[1, 2, 1, 3, 5, 4, 7]"
+              ></widget-statistique>
+
+              <widget-statistique
+                class="col-span-1 handle-v"
+                :chartTitle="'TETCHERS'"
+                :chartColor="{
+                primary: 'rgba(130,35,218,0.8)',
+                accent: 'rgba(130,35,218,0.1)'
+              }"
+                :chartData="[1, 2, 1, 3, 5, 4, 7]"
+              ></widget-statistique>
             </div>
           </div>
 
@@ -198,7 +185,7 @@
 import {userStore} from "~/stores/user";
 
 export default {
-  async asyncData({ $auth }) {
+  async asyncData({$auth}) {
     const store = userStore()
     store.user = $auth.user
   },
@@ -214,7 +201,7 @@ export default {
 </script>
 
 <script setup>
-import {onMounted, ref} from "vue";
+import {onMounted, reactive, ref} from "vue";
 import Chart from '@/plugins/chart';
 import {userStore} from "~/stores/user";
 import AppModal from "~/components/shared/modal/app-modal.vue";
@@ -225,134 +212,55 @@ const openAppModal = ref(false);
 
 const user = userStore();
 
-
-console.log(user)
-
-
-const chartOptions = {
-  maintainAspectRatio: false,
-  legend: {
-    display: false,
-  },
-  tooltips: {
-    enabled: false,
-  },
-  elements: {
-    point: {
-      radius: 0
-    },
-  },
-  scales: {
-    xAxes: [{
-      gridLines: false,
-      scaleLabel: false,
-      ticks: {
-        display: false
-      }
-    }],
-    yAxes: [{
-      gridLines: false,
-      scaleLabel: false,
-      ticks: {
-        display: false,
-        suggestedMin: 0,
-        suggestedMax: 10
-      }
-    }]
-  }
-};
-//
-
-onMounted(() => {
-
-  const chartOptions = {
-    maintainAspectRatio: false,
-    legend: {
-      display: false,
-    },
-    tooltips: {
-      enabled: false,
-    },
-    elements: {
-      point: {
-        radius: 0
-      },
-    },
-    scales: {
-      xAxes: [{
-        gridLines: false,
-        scaleLabel: false,
-        ticks: {
-          display: false
-        }
-      }],
-      yAxes: [{
-        gridLines: false,
-        scaleLabel: false,
-        ticks: {
-          display: false,
-          suggestedMin: 0,
-          suggestedMax: 10
-        }
-      }]
+const theme = reactive(
+  {
+    mode: process.client ? window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light' : 'dark',
+    color: {
+      primary: 'blue-600',
+      accent: 'blue-400'
     }
-  };
-//
-  const ctx = document.getElementById('chart1').getContext('2d');
-  const chart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: [1, 2, 1, 3, 5, 4, 7],
-      datasets: [
-        {
-          backgroundColor: "rgba(101, 116, 205, 0.1)",
-          borderColor: "rgba(101, 116, 205, 0.8)",
-          borderWidth: 2,
-          data: [1, 2, 1, 3, 5, 4, 7],
-        },
-      ],
-    },
-    options: chartOptions
-  });
-//
-  const ctx2 = document.getElementById('chart2').getContext('2d');
-  const chart2 = new Chart(ctx2, {
-    type: "line",
-    data: {
-      labels: [2, 3, 2, 9, 7, 7, 4],
-      datasets: [
-        {
-          backgroundColor: "rgba(246, 109, 155, 0.1)",
-          borderColor: "rgba(246, 109, 155, 0.8)",
-          borderWidth: 2,
-          data: [2, 3, 2, 9, 7, 7, 4],
-        },
-      ],
-    },
-    options: chartOptions
-  });
-//
-  const ctx3 = document.getElementById('chart3').getContext('2d');
-  const chart3 = new Chart(ctx3, {
-    type: "line",
-    data: {
-      labels: [2, 5, 1, 3, 2, 6, 7],
-      datasets: [
-        {
-          backgroundColor: "rgba(246, 153, 63, 0.1)",
-          borderColor: "rgba(246, 153, 63, 0.8)",
-          borderWidth: 2,
-          data: [2, 5, 1, 3, 2, 6, 7],
-        },
-      ],
-    },
-    options: chartOptions
-  });
-})
+  }
+);
 
 
 </script>
 
 <style scoped>
-@import "assets/css/chart.css";
+.fade-enter-active, .fade-leave-active {
+  transition: all .3s ease;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.sortable-item {
+  transition: transform 0.3s ease;
+  cursor: grab;
+}
+
+.sortable-item:hover {
+  z-index: 10;
+}
+
+.sortable-item-dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.sortable-ghost {
+  opacity: 0.4;
+  cursor: grabbing;
+}
+
+.sortable-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 </style>
