@@ -32,7 +32,7 @@
         <div :class="`focus-within:text-${theme.color.primary}`"
              class="relative w-full flex max-w-xl mx-2 sm:mx-6 transition duration-700 ease-in-out">
           <div @click="toggleSearchInput"
-               class="md:absolute inset-y-0 z-20 h-full w-8 h-8 rounded-full cursor-pointer flex justify-center items-center bg-gray-100 dark:bg-gray-700 transition duration-700 ease-in-out search-div"
+               class="md:absolute inset-y-0 z-50 h-full w-8 h-8 rounded-full cursor-pointer flex justify-center items-center bg-gray-100 dark:bg-gray-700 transition duration-700 ease-in-out search-div"
                :class="IsActiveSearchInput?'absolute ':'block'"
           >
             <svg class="w-4 h-4 my-2 md:w-5 md:h-5 md:ml-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -43,11 +43,11 @@
             </svg>
           </div>
           <input @focusin="focusSearchInput" @focusout="handleSearchInput"
-                 class="w-full md:block pl-10 bg-gray-100 sm:pr-2 py-2.5 text-sm text-gray-700 placeholder-gray-600 z-50 border-0 rounded-full placeholder: peer-placeholder-shown:-translate-y-1/2 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 form-input transition duration-700 ease-in-out"
+                 class="w-full md:block pl-10 bg-gray-100 sm:pr-2 py-2.5 text-sm text-gray-700 placeholder-gray-600 z-40 border-0 rounded-full placeholder: peer-placeholder-shown:-translate-y-1/2 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 form-input transition duration-700 ease-in-out"
                  :class="'focus:border-'+theme.color.accent+' focus:outline-none focus:shadow-outline-'+theme.color.primary + (IsActiveSearchInput ? '' : ' hidden')"
                  type="text" placeholder="Search in USchool" aria-label="Search"/>
           <div v-if="IsActiveSearchInput" style="border-radius:18px"
-               class="text-sm absolute top-0 h-fit shadow-lg w-full right-0 pt-10 mx-auto z-40 text-gray-700 border-0 rounded-lg form-input bg-gray-100 dark:bg-gray-700 opacity-90">
+               class="text-sm absolute top-0 h-fit shadow-lg w-full right-0 pt-10 mx-auto z-30 text-gray-700 border-0 rounded-lg form-input bg-gray-100 dark:bg-gray-700 opacity-90">
             ff
             <br>ff
             <br>ff
