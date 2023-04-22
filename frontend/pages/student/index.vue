@@ -195,7 +195,7 @@ export default {
     {role: 'SUPER_ADMIN'},
   ],
   mounted() {
-    console.log(this.$auth.user)
+    console.log(this.$auth.user);
   }
 }
 </script>
