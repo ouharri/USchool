@@ -2,54 +2,71 @@
   <div
     class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white  dark:from-gray-800 dark:to-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
     <div class="px-3 pt-8 pb-10 text-center relative z-10">
-      <h4 class="text-sm uppercase text-gray-500 leading-tight">{{chartTitle}}</h4>
+      <h4 class="text-sm uppercase text-gray-500 leading-tight">{{ chartTitle }}</h4>
       <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">3,682</h3>
       <p class="text-xs text-green-500 leading-tight">▲ 57.1%</p>
     </div>
     <div class="absolute bottom-0 inset-x-0">
-      <canvas :id="`chart-${this.chartTitle}`" height="70"></canvas>
+      <canvas :id="`chart-${this.chartTitle}`" height="70" width="102%"></canvas>
     </div>
   </div>
 </template>
 
 <script>
-
-import Chart from "~/plugins/chart";
 export default {
   name: "statistique",
   data() {
     return {
-      chartOptions : {
+      chartOptions: {
+        responsive: true,
         maintainAspectRatio: false,
-        legend: {
-          display: false,
+        interaction: {
+          intersect: false,
+          mode: 'index',
         },
-        tooltips: {
-          enabled: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            enabled: false,
+          },
         },
         elements: {
           point: {
-            radius: 0
+            radius: 0,
           },
         },
         scales: {
-          xAxes: [{
-            gridLines: false,
-            scaleLabel: false,
+          x: {
+            display: false,
+            grid: {
+              display: false,
+            },
             ticks: {
-              display: false
-            }
-          }],
-          yAxes: [{
-            gridLines: false,
-            scaleLabel: false,
+              display: false,
+            },
+            gridLines: {
+              display: false,
+              drawOnChartArea: false
+            },
+          },
+          y: {
+            display: false,
+            grid: {
+              display: false,
+            },
             ticks: {
               display: false,
               suggestedMin: 0,
-              suggestedMax: 10
-            }
-          }]
-        }
+              suggestedMax: 10,
+            },
+            gridLines: {
+              display: false,
+              drawOnChartArea: false
+            },
+          },
+        },
       },
     }
   },
@@ -64,7 +81,7 @@ export default {
     },
     chartColor: {
       type: Object,
-      default:() => ({
+      default: () => ({
         accent: "rgba(101, 116, 205, 0.1)",
         primary: "rgba(101, 116, 205, 0.8)",
       })
@@ -86,6 +103,10 @@ export default {
             borderColor: this.chartColor.primary,
             borderWidth: 2,
             data: this.chartData,
+            tension: 0.4,
+            pointRadius: 0,
+            fill: true,
+            maxBarThickness: 6
           },
         ],
       },

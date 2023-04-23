@@ -65,8 +65,10 @@
             </div>
           </div>
 
+
         </div>
       </div>
+      <widget-chart class="col-span-2"></widget-chart>
     </div>
 
     <!-- Main modal -->
@@ -222,6 +224,11 @@ const theme = reactive(
     }
   }
 );
+
+
+onMounted(() => {
+
+})
 
 
 </script>
