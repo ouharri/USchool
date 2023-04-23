@@ -21,7 +21,6 @@
     "@nuxtjs/composition-api": "^0.33.1",
     "@nuxtjs/pwa": "^3.3.5",
     "@pinia/nuxt": "^0.2.1",
-    "chart.js": "^4.2.1",
     "core-js": "^3.25.3",
     "element-ui": "^2.15.13",
     "flowbite": "^1.6.4",
