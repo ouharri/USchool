@@ -12,7 +12,7 @@
             class="text-lg font-bold flex justify-center text-gray-800 dark:text-gray-200 transition duration-700 ease-in-out py-1"
             href="#">
             <span class="hidden md:block xl:hidden" :class="IsOpenSemiSide? 'md:hidden':'block'">US</span>
-            <span class="block" :class="IsOpenSemiSide? 'block':'hidden'">USchool</span>
+            <span class="xl:block" :class="IsOpenSemiSide? 'block':'hidden'">USchool</span>
             <span class="hidden" id="Logo">USchool</span>
           </a>
         </div>
