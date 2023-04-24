@@ -1,4 +1,4 @@
-const apiUrl = 'http://192.168.1.31:8080';
+const apiUrl = 'http://127.0.0.1:8000';
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {

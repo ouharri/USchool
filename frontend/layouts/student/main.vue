@@ -70,6 +70,7 @@ export default {
     },
     async toggleSideMenu() {
       const $sidebar = $("#left-sidebar");
+      await $sidebar.toggleClass('w-64')
       this.SideMenuFlag && (await $sidebar.toggleClass("absolute right-0-0 top-0"));
       await $("#bg-sidebar").toggleClass("hidden");
       // await $("#Logo").toggleClass("hidden ease-in ease-out");
