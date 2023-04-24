@@ -38,7 +38,8 @@
       </div>
     </div>
     <div
-      class="month-list grid relative bottom-[25px] justify-center items-center border dark:text-gray-200 overflow-x-hidden hide" :class="`border-${theme.color.primary}`"
+      class="month-list grid relative bottom-[25px] justify-center items-center border dark:text-gray-200 overflow-x-hidden hide lg:hidden"
+      :class="`border-${theme.color.primary}`"
     ></div>
   </div>
 </template>
@@ -108,6 +109,7 @@ export default {
     month_picker.onclick = () => {
       month_list.classList.remove("hideonce");
       month_list.classList.remove("hide");
+      month_list.classList.remove("lg:hidden");
       month_list.classList.add("show");
       dayTextFormate.classList.remove("showtime");
       dayTextFormate.classList.add("hidetime");
@@ -201,6 +203,7 @@ export default {
         currentMonth.value = index;
         generateCalendar(currentMonth.value, currentYear.value);
         month_list.classList.replace("show", "hide");
+        month_list.classList.add("lg:hidden");
         dayTextFormate.classList.remove("hideTime");
         dayTextFormate.classList.add("showtime");
         timeFormate.classList.remove("hideTime");
@@ -284,8 +287,7 @@ export default {
 }
 
 .calendar {
-//height: 550px; margin: 0; border-radius: 25px; overflow: hidden;
-  padding: 20px 60px 0 60px;
+//height: 550px; margin: 0; border-radius: 25px; overflow: hidden; padding: 20px 60px 0 60px;
 }
 
 .calendar-header {
@@ -460,11 +462,11 @@ export default {
 
 .date-time-formate {
   height: max-content;
-  font-family: Dubai Light, Century Gothic,serif;
+  font-family: Dubai Light, Century Gothic, serif;
 }
 
 .day-text-formate {
-  font-family: Microsoft JhengHei UI,serif;
+  font-family: Microsoft JhengHei UI, serif;
   font-size: 1.4rem;
   padding-right: 5%;
 }
@@ -520,7 +522,7 @@ export default {
   background-color: #818181 !important;
 }
 
-.border-blue-600{
+.border-blue-600 {
   border-color: #1c44ff !important;
 }
 
@@ -585,7 +587,7 @@ export default {
 
 @media (max-width: 375px) {
   .month-list > div {
-    margin: 5px 0px;
+    margin: 5px 0;
   }
 }
 

@@ -1,22 +1,23 @@
 <template>
-  <div>
+  <div class="transition duration-è00 ease-in-out">
     <div
       class="min-h-screen min-w-full z-10 absolute top-0 right-0 bg-gray-500 dark:bg-gray-300 hidden transition ease-in opacity-[20%] transition duration-700 ease-in-out"
       id="bg-sidebar" @click="$emit('toggleSideMenu')"></div>
     <aside id="left-sidebar"
-           class="z-20 hidden overflow-y-hidden bg-white z-40 dark:bg-gray-800 md:block flex-shrink-0 h-screen transition duration-1000 ease-in-out"
-           :class="IsOpenSemiSide?'w-64':'xl:w-64'">
+           class="z-20 hidden overflow-y-hidden bg-white z-40 dark:bg-gray-800 md:block flex-shrink-0 h-screen transition duration-700 ease-in-out"
+           :class="IsOpenSemiSide?'sm:w-64':'xl:w-64'">
       <div class="py-4 text-gray-500 dark:text-gray-400 transition duration-700 ease-in-out">
         <div class="logo mb-2">
           <a
             class="text-lg font-bold flex justify-center text-gray-800 dark:text-gray-200 transition duration-700 ease-in-out py-1"
             href="#">
-            <span class="xl:hidden" :class="IsOpenSemiSide? 'hidden':'block'">US</span>
-            <span class="xl:block" :class="IsOpenSemiSide? 'block':'hidden'">USchool</span>
+            <span class="hidden md:block xl:hidden" :class="IsOpenSemiSide? 'md:hidden':'block'">US</span>
+            <span class="block" :class="IsOpenSemiSide? 'block':'hidden'">USchool</span>
+            <span class="hidden" id="Logo">USchool</span>
           </a>
         </div>
-        <div class="overflow-y-auto scrollbar scrollbar-rounded-md scrollSide h-[90vh] transition duration-1000 ease-in-out">
-          <ul class="mt-6 transition duration-1000 ease-in-out">
+        <div class="overflow-y-auto scrollbar scrollbar-rounded-md scrollSide h-[90vh] transition duration-700 ease-in-out">
+          <ul class="mt-6 transition duration-700 ease-in-out">
             <li class="relative px-6 py-3 hidden xl:hidden md:block" @click="OpenSemiSide">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 ">
@@ -38,7 +39,7 @@
                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
                   </path>
                 </svg>
-                <span class="ml-4 xl:block" :class="IsOpenSemiSide? 'block':'sm:hidden'">Dashboard</span>
+                <span class="ml-4 xl:block" :class="IsOpenSemiSide? 'block':'block md:hidden'">Dashboard</span>
               </a>
             </li>
           </ul>

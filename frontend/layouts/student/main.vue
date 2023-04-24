@@ -5,7 +5,7 @@
         @toggleSideMenu="toggleSideMenu"
         :theme="theme"
       ></side-bar>
-      <div class="flex flex-col flex-1 w-full nav-bar">
+      <div class="flex flex-col flex-1 w-full nav-bar transition duration-700 ease-in-out">
         <nav-bar
           @toggleSideMenu="toggleSideMenu"
           @toggleTheme="toggleTheme"
@@ -13,7 +13,7 @@
           :theme="theme"
         ></nav-bar>
         <main class="h-full overflow-y-auto">
-          <div class="container grid px-6 mx-auto">
+          <div class="container grid px-6 mx-auto transition duration-700 ease-in-out">
             <nuxt/>
           </div>
         </main>
@@ -73,7 +73,7 @@ export default {
       await $sidebar.toggleClass('w-64')
       this.SideMenuFlag && (await $sidebar.toggleClass("absolute right-0-0 top-0"));
       await $("#bg-sidebar").toggleClass("hidden");
-      // await $("#Logo").toggleClass("hidden ease-in ease-out");
+      await $("#Logo").toggleClass("hidden ease-in ease-out");
       // const toggleMain = this.SideMenuFlag && (await $(".main").toggleClass("active", 300));
       await $sidebar
         .stop()

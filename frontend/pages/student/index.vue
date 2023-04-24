@@ -9,7 +9,7 @@
       <span :class="`text-${theme.color.primary}`">!</span>
     </h1>
 
-    <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-x-5 gap-y-5" v-sortable="{ handle: '.handle' }">
+    <div class="mt-4 grid grid-cols-1 lg:grid-cols-4 gap-x-5 gap-y-5" v-sortable="{ handle: '.handle' }">
       <widget-calendar class="col-span-2"></widget-calendar>
       <div class="col-span-2 h-full">
         <div class="grid grid-cols-3 w-full gap-x-4 gap-y-4 h-full" v-sortable="{ handle: '.handle' }">
