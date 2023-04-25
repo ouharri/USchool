@@ -6,7 +6,7 @@
     <aside id="left-sidebar"
            class="z-20 hidden overflow-y-hidden bg-white z-40 dark:bg-gray-800 md:block flex-shrink-0 h-screen transition duration-700 ease-in-out"
            :class="IsOpenSemiSide?'sm:w-64':'xl:w-64'">
-      <div class="py-4 text-gray-500 dark:text-gray-400 transition duration-700 ease-in-out">
+      <div class="py-4 text-gray-500 dark:text-gray-400 transition duration-700 ease-in-out relative">
         <div class="logo mb-2">
           <a
             class="text-lg font-bold flex justify-center text-gray-800 dark:text-gray-200 transition duration-700 ease-in-out py-1"
@@ -16,8 +16,9 @@
             <span class="hidden" id="Logo">USchool</span>
           </a>
         </div>
-        <div class="overflow-y-auto scrollbar scrollbar-rounded-md scrollSide h-[90vh] transition duration-700 ease-in-out">
-          <ul class="mt-6 transition duration-700 ease-in-out">
+        <div
+          class="overflow-y-auto scrollbar scrollbar-rounded-md scrollSide h-[90vh] transition duration-700 ease-in-out">
+          <ul class="mt-6 transition duration-700 ease-in-out relative h-full">
             <li class="relative px-6 py-3 hidden xl:hidden md:block" @click="OpenSemiSide">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 ">
@@ -42,8 +43,6 @@
                 <span class="ml-4 xl:block" :class="IsOpenSemiSide? 'block':'block md:hidden'">Dashboard</span>
               </a>
             </li>
-          </ul>
-          <ul>
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -140,6 +139,7 @@
               </button>
               <!--              hh -->
             </li>
+
           </ul>
           <!--          <div class="px-6 my-6">-->
           <!--            <button-->
@@ -148,6 +148,24 @@
           <!--              <span class="ml-2" aria-hidden="true">+</span>-->
           <!--            </button>-->
           <!--          </div>-->
+        </div>
+        <div class="absolute bottom-6 right-0 opacity-70 bg-gray-200 dark:bg-gray-600 z-50"
+            @click="OpenSemiSide">
+          <a
+            class="h-full items-center w-full transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 ">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" aria-hidden="true" fill="none"
+                 stroke-linecap="round" stroke-linejoin="round" v-if="IsOpenSemiSide"
+                 stroke-width="1" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="m12.707 7.707-1.414-1.414L5.586 12l5.707 5.707 1.414-1.414L8.414 12z"></path>
+              <path d="M16.293 6.293 10.586 12l5.707 5.707 1.414-1.414L13.414 12l4.293-4.293z"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" aria-hidden="true" fill="none"
+                 stroke-linecap="round" stroke-linejoin="round" v-else
+                 stroke-width="1" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M10.296 7.71 14.621 12l-4.325 4.29 1.408 1.42L17.461 12l-5.757-5.71z"></path>
+              <path d="M6.704 6.29 5.296 7.71 9.621 12l-4.325 4.29 1.408 1.42L12.461 12z"></path>
+            </svg>
+          </a>
         </div>
       </div>
     </aside>
