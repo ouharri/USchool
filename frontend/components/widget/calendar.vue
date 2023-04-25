@@ -246,14 +246,14 @@ export default {
     ).format(currshowDate);
     setInterval(() => {
       const timer = new Date();
-      const option = {
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-      };
-      const formateTimer = new Intl.DateTimeFormat("en-us", option).format(
-        timer
-      );
+      // const option = {
+      //   hour: "numeric",
+      //   minute: "numeric",
+      //   second: "numeric",
+      // };
+      // const formateTimer = new Intl.DateTimeFormat("en-us", option).format(
+      //   timer
+      // );
       todayShowTime.textContent = `${`${timer.getHours() - 1}`.padStart(
         2,
         "0"
@@ -320,7 +320,6 @@ export default {
 .calendar-week-days div {
   display: grid;
   place-items: center;
-  color: var(--bg-second);
   height: 50px;
 }
 
@@ -329,7 +328,6 @@ export default {
   justify-items: center;
   grid-template-columns: repeat(7, 1fr);
   /* gap: 10px; */
-  color: var(--color-txt);
 }
 
 .calendar-days div {
@@ -350,14 +348,6 @@ export default {
   cursor: pointer;
 }
 
-.month-picker:hover {
-  background-color: var(--color-hover);
-}
-
-.month-picker:hover {
-  color: var(--color-txt);
-}
-
 .year-picker {
   display: flex;
   align-items: center;
@@ -369,7 +359,7 @@ export default {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  margin: 0px 10px;
+  margin: 0 10px;
   cursor: pointer;
 }
 
@@ -377,10 +367,6 @@ export default {
   background-color: var(--light-btn);
   transition: all 0.2s ease-in-out;
   transform: scale(1.12);
-}
-
-.year-change:hover pre {
-  color: var(--bg-body);
 }
 
 .calendar-footer {
@@ -393,7 +379,7 @@ export default {
 #year:hover {
   cursor: pointer;
   transform: scale(1.2);
-  transition: all 0.2 ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .calendar-days div span {
@@ -456,7 +442,7 @@ export default {
 
 .month-list.hide {
   animation: to-right 1s forwards;
-  visibility: none;
+  visibility: hidden;
   pointer-events: none;
 }
 

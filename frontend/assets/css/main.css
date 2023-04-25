@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  transition: 0.5s;
+}
+
 /*  Model transition  */
 
 .v-enter-active,
@@ -47,3 +53,5 @@
 .bg-dark-blue {
   background-color: #1F2937;
 }
+
+
