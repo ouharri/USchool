@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  transition: 0.5s;
 }
 
 /*  Model transition  */
@@ -39,19 +38,26 @@
 /* theme color */
 
 .text-blue {
-  color: #0070C9;
+  color: #0070C9 !important;
+  fill: #0070C9 !important;
 }
 
 .text-dark-blue {
-  color: #1F2937;
+  color: #1F2937 !important;
+  fill: #1F2937 !important;
+}
+
+.text-dark-accent {
+  color: #3B82F6 !important;
+  fill: #3B82F6 !important;
 }
 
 .bg-blue {
-  background-color: #0070C9;
+  background-color: #0070C9 !important;
 }
 
 .bg-dark-blue {
-  background-color: #1F2937;
+  background-color: #1F2937 !important;
 }
 
 

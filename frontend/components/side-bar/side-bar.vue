@@ -152,16 +152,16 @@
         <div class="absolute bottom-6 right-0 opacity-70 bg-gray-200 dark:bg-gray-600 z-50 cursor-pointer pl-2 rounded-l-full hidden xl:hidden md:block"
             @click="OpenSemiSide">
           <a
-            class="h-full items-center w-full transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" aria-hidden="true" fill="none"
+            class="h-full items-center w-full transition-colors duration-150" :class="`text-${theme.color.primary} dark:hover:text-${theme.color.accent}`">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" aria-hidden="true" fill="currentColor"
                  stroke-linecap="round" stroke-linejoin="round" v-if="IsOpenSemiSide"
-                 stroke-width="1" viewBox="0 0 24 24" stroke="currentColor">
+                 stroke-width="1" viewBox="0 0 24 24" stroke="none">
               <path d="m12.707 7.707-1.414-1.414L5.586 12l5.707 5.707 1.414-1.414L8.414 12z"></path>
               <path d="M16.293 6.293 10.586 12l5.707 5.707 1.414-1.414L13.414 12l4.293-4.293z"></path>
             </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" aria-hidden="true" fill="none"
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" aria-hidden="true" fill="currentColor"
                  stroke-linecap="round" stroke-linejoin="round" v-else
-                 stroke-width="1" viewBox="0 0 24 24" stroke="currentColor">
+                 stroke-width="1" viewBox="0 0 24 24" stroke="none">
               <path d="M10.296 7.71 14.621 12l-4.325 4.29 1.408 1.42L17.461 12l-5.757-5.71z"></path>
               <path d="M6.704 6.29 5.296 7.71 9.621 12l-4.325 4.29 1.408 1.42L12.461 12z"></path>
             </svg>

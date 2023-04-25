@@ -1,6 +1,6 @@
 <template>
   <div :class="theme.mode">
-    <div class="flex h-screen bg-gray-100 dark:bg-gray-900 max-h-screen screen transition duration-700 ease-in-out">
+    <div class="flex h-screen bg-gray-100 dark:bg-gray-900 max-h-screen transition duration-700 ease-in-out">
       <side-bar
         @toggleSideMenu="toggleSideMenu"
         :theme="theme"
@@ -13,7 +13,7 @@
           :theme="theme"
         ></nav-bar>
         <main class="h-full overflow-y-auto">
-          <div class="container grid px-6 mx-auto transition duration-700 ease-in-out">
+          <div class="container grid px-6 mx-auto screen transition duration-700 ease-in-out main">
             <nuxt/>
           </div>
         </main>
@@ -110,5 +110,9 @@ export default {
 .screen:hover::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background-color: rgba(141, 141, 141, 0.42);
+}
+
+.main {
+  transition: 0.5s;
 }
 </style>
