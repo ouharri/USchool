@@ -48,6 +48,20 @@
                 <span class="ml-4 xl:block" :class="IsOpenSemiSide? 'block':'block md:hidden'">{{ m.name }}</span>
               </NuxtLink>
             </li>
+            <li class="relative px-6 py-3" v-for="m in menu" :key="m.name">
+              <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg" v-if="$router.currentRoute.path === m.path"
+                    aria-hidden="true" :class="`bg-${theme.color.primary}`">
+              </span>
+              <NuxtLink
+                :to="m.path"
+                class="w-full text-sm font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100 inline-flex items-center inline-flex xl:inline-flex "
+                :class="!IsOpenSemiSide?'md:flex':'inline-flex'"
+              >
+                  <img class="object-cover w-10 h-10 rounded-full"
+                       :src="this.$auth.user.avatar || 'https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82'"
+                       alt="this.$auth.user.fi"/>
+              </NuxtLink>
+            </li>
 
           </ul>
           <!--          <div class="px-6 my-6">-->
