@@ -59,7 +59,6 @@ export default {
           }
         }
       ),
-      SideMenuFlag: true,
       menu: [
         {
           'name': 'Home',
@@ -73,10 +72,16 @@ export default {
         },
         {
           'name': 'users',
-          'icon' : `<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewBox="0 0 24 24" stroke="none"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path></svg>`,
+          'icon': `<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewBox="0 0 24 24" stroke="none"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path></svg>`,
           'path': '/admin/users',
         },
-      ]
+      ],
+      SideMenuFlag: true,
+      App: (process.client && JSON.parse(localStorage.getItem('APP')))
+        || {
+          IsOpenMenu: false,
+          IsOpenSemiSidebar: false,
+        },
     }
   },
   methods: {
@@ -90,26 +95,38 @@ export default {
     },
     async toggleSideMenu() {
       const $sidebar = $("#left-sidebar");
-      await $sidebar.toggleClass('w-64')
-      this.SideMenuFlag && (await $sidebar.toggleClass("absolute right-0-0 top-0"));
+      this.SideMenuFlag && (await $sidebar.toggleClass("absolute right-0-0 top-0")) && (await $("#Logo").toggleClass("hidden ease-in ease-out"));
       await $("#bg-sidebar").toggleClass("hidden");
-      await $("#Logo").toggleClass("hidden ease-in ease-out");
       // const toggleMain = this.SideMenuFlag && (await $(".main").toggleClass("active", 300));
       await $sidebar
         .stop()
         .slideToggle(400, "linear", async () => {
-          this.SideMenuFlag = !this.SideMenuFlag;
+          await (this.SideMenuFlag = !this.SideMenuFlag);
           $("#left-sidebar")
             .css("display", "")
             .toggleClass("block hidden active");
         })
         .promise()
         .then(async () => {
-          // !toggleMain && $(".main").toggleClass("active", 100);
-          this.SideMenuFlag && (await $("#left-sidebar").toggleClass("absolute right-0-0 top-0"));
+          this.App.IsOpenMenu = !this.App.IsOpenMenu;
+          process.client && localStorage.setItem('APP', JSON.stringify(this.App));
+          this.SideMenuFlag && (await $("#left-sidebar").toggleClass("absolute right-0-0 top-0")) && (await $("#Logo").toggleClass("hidden ease-in ease-out"));
         });
     },
   },
+  async created() {
+    if (process.client && JSON.parse(localStorage.getItem('APP')).IsOpenMenu) {
+      await new Promise(async (resolve) => {
+        this.App.IsOpenMenu = false;
+        this.SideMenuFlag = true;
+        this.SideMenuFlag && (await $("#left-sidebar").toggleClass("absolute right-0-0 top-0"));
+        resolve();
+      }).then(async () => {
+        await this.toggleSideMenu();
+      });
+    }
+  }
+
 }
 </script>
 
