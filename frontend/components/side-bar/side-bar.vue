@@ -16,9 +16,25 @@
             <span class="hidden" id="Logo">USchool</span>
           </a>
         </div>
-        <div
-          class="overflow-y-auto scrollbar scrollbar-rounded-md scrollSide h-[90vh] transition duration-700 ease-in-out">
-          <ul class="mt-6 transition duration-700 ease-in-out relative h-full">
+        <div :class="IsOpenSemiSide? 'md:h-[92vh]' : 'md:h-[87vh]'"
+          class="overflow-y-auto scrollbar scrollbar-rounded-md scrollSide h-[90vh] xl:h-[90vh] transition duration-700 ease-in-out flex flex-col justify-between">
+          <ul class="mt-6 transition duration-700 ease-in-out relative overflow-y-auto scrollbar scrollbar-rounded-md scrollSide h-[70vh]">
+            <li class="relative px-6 py-3" v-for="m in menu" :key="m.name">
+              <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg" v-if="$router.currentRoute.path === m.path"
+                    aria-hidden="true" :class="`bg-${theme.color.primary}`">
+              </span>
+              <NuxtLink
+                :to="m.path"
+                class="w-full text-sm font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100 inline-flex items-center inline-flex xl:inline-flex "
+                :class="!IsOpenSemiSide?'md:flex':'inline-flex'"
+              >
+                <div v-html="m.icon"></div>
+                <span class="ml-4 xl:block" :class="IsOpenSemiSide? 'block':'block md:hidden'">{{ m.name }}</span>
+              </NuxtLink>
+            </li>
+
+          </ul>
+          <ul class="mt-6 transition duration-700 ease-in-out relative">
             <li class="relative px-6 py-3" v-for="m in menu" :key="m.name">
               <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg" v-if="$router.currentRoute.path === m.path"
                     aria-hidden="true" :class="`bg-${theme.color.primary}`">
@@ -42,8 +58,8 @@
           <!--            </button>-->
           <!--          </div>-->
         </div>
-        <div
-          class="absolute bottom-6 right-0 opacity-70 bg-gray-200 dark:bg-gray-600 z-50 cursor-pointer pl-2 rounded-l-full hidden xl:hidden md:block"
+        <div :class="IsOpenSemiSide? 'bottom-2.5' : 'bottom-[-5]'"
+          class="absolute right-0 opacity-70 bg-gray-200 dark:bg-gray-600 z-50 cursor-pointer pl-2 rounded-l-full hidden xl:hidden md:block"
           @click="OpenSemiSide">
           <a
             class="h-full items-center w-full transition-colors duration-150"
