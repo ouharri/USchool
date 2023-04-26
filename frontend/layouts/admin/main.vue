@@ -5,6 +5,8 @@
         @toggleSideMenu="toggleSideMenu"
         :theme="theme"
         :menu="menu"
+        :profil-link="'/admin/profile'"
+        :setting-link="'/admin/setting'"
       ></side-bar>
       <div class="flex flex-col flex-1 w-full nav-bar transition duration-700 ease-in-out">
         <nav-bar
