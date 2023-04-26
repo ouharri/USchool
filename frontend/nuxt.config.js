@@ -29,6 +29,7 @@ export default {
   plugins: [
     '@/plugins/element-ui',
     '@/plugins/sortable',
+    '@/plugins/fontawesome',
     {src: '@/plugins/jquery', mode: 'client', ssr: false},
   ],
 
