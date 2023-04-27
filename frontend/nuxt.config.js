@@ -40,7 +40,7 @@ export default {
   buildModules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/composition-api/module',
-    ['@pinia/nuxt', {disableVuex: true}],
+    ['@pinia/nuxt', { disableVuex: false }],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -140,4 +140,4 @@ export default {
       },
     },
   },
-}
+};

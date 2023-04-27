@@ -1,7 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  purge: [
+  content: [
+    "./node_modules/flowbite.{js,ts}",
+    './layouts/*.vue',
+    './components/*.vue',
+    './pages/**/*.vue',
+    './pages/*.vue',
     './components/**/*.vue',
     './components/*.vue',
     './layouts/**/*.vue',
@@ -10,13 +15,6 @@ module.exports = {
     './pages/*.vue',
     './plugins/**/*.js',
     './nuxt.config.js',
-  ],
-  content: [
-    "./node_modules/flowbite.{js,ts}",
-    './layouts/*.vue',
-    './components/*.vue',
-    './pages/**/*.vue',
-    './pages/*.vue',
   ],
   theme: {
     extend: {
