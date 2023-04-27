@@ -181,7 +181,7 @@ import {ref} from "vue";
 defineProps(['theme', 'menu', 'ProfilLink', 'SettingLink'])
 
 const IsOpenSemiSide = ref(
-  (process.client && JSON.parse(localStorage.getItem('APP')).IsOpenSemiSide)
+  (process.client && localStorage.getItem('APP') !== null && JSON.parse(localStorage.getItem('APP')).IsOpenSemiSide)
   || false
 );
 
@@ -189,7 +189,10 @@ function OpenSemiSide() {
   IsOpenSemiSide.value = !IsOpenSemiSide.value;
   const tmp = JSON.parse(localStorage.getItem('APP'));
   if (tmp) tmp.IsOpenSemiSide = IsOpenSemiSide.value;
-  process.client && localStorage.setItem('APP', JSON.stringify(tmp || {IsOpenSemiSide: IsOpenSemiSide.value,IsOpenMenu: false}));
+  process.client && localStorage.setItem('APP', JSON.stringify(tmp || {
+    IsOpenSemiSide: IsOpenSemiSide.value,
+    IsOpenMenu: false
+  }));
 }
 </script>
 

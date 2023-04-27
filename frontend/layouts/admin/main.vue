@@ -77,8 +77,12 @@ export default {
         },
       ],
       SideMenuFlag: true,
-      App: (process.client && JSON.parse(localStorage.getItem('APP')))
+      App: process.client ? JSON.parse(localStorage.getItem('APP'))
         || {
+          IsOpenMenu: false,
+          IsOpenSemiSidebar: false,
+        }
+        : {
           IsOpenMenu: false,
           IsOpenSemiSidebar: false,
         },
@@ -115,7 +119,7 @@ export default {
     },
   },
   async created() {
-    if (process.client && JSON.parse(localStorage.getItem('APP')).IsOpenMenu) {
+    if (process.client && this.App.IsOpenMenu) {
       await new Promise(async (resolve) => {
         this.App.IsOpenMenu = false;
         this.SideMenuFlag = true;
