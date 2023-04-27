@@ -16,8 +16,8 @@
             @logout="logout"
             :theme="theme"
           ></nav-bar>
-          <main class="h-full overflow-y-auto">
-            <div class="container grid px-6 mx-auto screen transition duration-700 ease-in-out main">
+          <main class="h-full overflow-y-auto screen">
+            <div class="container grid px-6 mx-auto transition duration-700 ease-in-out main">
               <nuxt/>
             </div>
           </main>
@@ -89,7 +89,7 @@ export default {
     },
     async toggleSideMenu() {
       const $sidebar = $("#left-sidebar");
-      this.SideMenuFlag && (await $sidebar.toggleClass("absolute left-0 top-0")) && (await $("#Logo").toggleClass("hidden ease-in ease-out"));
+      this.SideMenuFlag && (await $sidebar.toggleClass("w-64 absolute left-0 top-0")) && (await $("#Logo").toggleClass("hidden ease-in ease-out"));
       await $("#bg-sidebar").toggleClass("hidden");
       await $sidebar
         .stop()
@@ -103,7 +103,7 @@ export default {
         .then(async () => {
           this.App.IsOpenMenu = !this.App.IsOpenMenu;
           process.client && localStorage.setItem('APP', JSON.stringify(this.App));
-          this.SideMenuFlag && (await $("#left-sidebar").toggleClass("absolute left-0 top-0")) && (await $("#Logo").toggleClass("hidden ease-in ease-out"));
+          this.SideMenuFlag && (await $("#left-sidebar").toggleClass("w-64 absolute left-0 top-0")) && (await $("#Logo").toggleClass("hidden ease-in ease-out"));
         });
     },
   },
@@ -112,7 +112,7 @@ export default {
       await new Promise(async (resolve) => {
         this.App.IsOpenMenu = false;
         this.SideMenuFlag = true;
-        this.SideMenuFlag && (await $("#left-sidebar").removeClass("absolute left-0 top-0"));
+        this.SideMenuFlag && (await $("#left-sidebar").removeClass("w-64 absolute left-0 top-0"));
         this.SideMenuFlag && (await $("#bg-sidebar").removeClass("hidden"));
         resolve();
       }).then(async () => {

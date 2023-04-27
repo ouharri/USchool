@@ -5,8 +5,6 @@ import {faHatWizard} from '@fortawesome/free-solid-svg-icons';
 
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
-;
-
 library.add(faHatWizard);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

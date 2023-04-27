@@ -1,2 +1,5 @@
 import $ from "jquery";
-window.$ = window.jQuery = $;
+
+export default ({app}) => {
+  window.$ = window.jQuery = app.$ = $;
+}
