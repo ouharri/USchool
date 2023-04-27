@@ -1,7 +1,15 @@
 <template>
   <transition>
     <div>
-      <p class="text-2xl font-bold h-screen w-screen flex justify-center items-center">USchool</p>
+      <div class="text-2xl font-bold h-screen w-screen flex flex-col justify-center items-center" :class="`text-${theme.color.primary}`">
+        <img src="/lg-logo.svg" alt="USchool Logo"/>
+        <div class="lds-ellipsis">
+          <div :class="`bg-${theme.color.primary}`"></div>
+          <div :class="`bg-${theme.color.primary}`"></div>
+          <div :class="`bg-${theme.color.primary}`"></div>
+          <div :class="`bg-${theme.color.primary}`"></div>
+        </div>
+      </div>
     </div>
   </transition>
 </template>
