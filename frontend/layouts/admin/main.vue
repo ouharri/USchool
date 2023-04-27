@@ -125,7 +125,6 @@ export default {
     await this.$nextTick(() => {
       this.IsRender = true;
     });
-    await this.$forceUpdate();
     initDropdowns();
     if (process.client) {
       this.theme = localStorage.getItem("theme") !== null ?
@@ -147,7 +146,6 @@ export default {
       if (newValue) {
         await this.$nextTick(async () => {
           this.IsRender = true;
-          alert('hh')
           await this.$forceUpdate();
         });
       }
