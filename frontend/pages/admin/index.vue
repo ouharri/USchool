@@ -64,8 +64,6 @@
               ></widget-statistique>
             </div>
           </div>
-
-
         </div>
       </div>
       <widget-chart class="col-span-2"></widget-chart>
