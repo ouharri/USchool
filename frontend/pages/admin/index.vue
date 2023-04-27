@@ -194,7 +194,6 @@ export default {
 
 <script setup>
 import {onMounted, reactive, ref} from "vue";
-import Chart from '@/plugins/chart';
 import {userStore} from "~/stores/user";
 import AppModal from "~/components/shared/modal/app-modal.vue";
 import DelModal from "~/components/shared/modal/del-modal.vue";

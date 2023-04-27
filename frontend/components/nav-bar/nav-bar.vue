@@ -28,11 +28,11 @@
       </div>
       <!-- Search input -->
       <div class="flex justify-center flex-1 lg:mr-10 xl:mr-20 transition duration-700 ease-in-out"
-           @mouseleave=" IsActiveSearchInput && !IsFocusSearchInput  ? toggleSearchInput() : null">
+           @mouseleave="toggleSearchFocus" @mouseenter="toggleSearchFocus">
         <div :class="`focus-within:text-${theme.color.primary}`"
              class="relative w-full flex max-w-xl mx-2 sm:mx-6 md:ml-20 transition duration-700 ease-in-out">
           <div @click="toggleSearchInput"
-               class="md:absolute inset-y-0 z-50 h-full w-8 h-8 rounded-full cursor-pointer flex justify-center items-center bg-gray-100 dark:bg-gray-700 transition duration-700 ease-in-out search-div"
+               class="md:absolute inset-y-0 z-[45] h-full w-8 h-8 rounded-full cursor-pointer flex justify-center items-center bg-gray-100 dark:bg-gray-700 transition duration-700 ease-in-out search-div"
                :class="IsActiveSearchInput?'absolute ':'block'"
           >
             <svg class="w-4 h-4 my-2 md:w-5 md:h-5 md:ml-2" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -42,7 +42,7 @@
               </path>
             </svg>
           </div>
-          <input @focusin="focusSearchInput" @focusout="handleSearchInput"
+          <input @focusin="toggleFocusSearchInput" @focusout="toggleFocusSearchInput"
                  class="w-full md:max-w-sm lg:max-w-full md:block pl-10 bg-gray-100 sm:pr-2 py-2.5 text-sm text-gray-700 placeholder-gray-600 z-40 border-0 rounded-full placeholder: peer-placeholder-shown:-translate-y-1/2 dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 form-input transition duration-700 ease-in-out"
                  :class="'focus:border-'+theme.color.accent+' focus:outline-none focus:shadow-outline-'+theme.color.primary + (IsActiveSearchInput ? '' : ' hidden')"
                  type="text" placeholder="Search in USchool" aria-label="Search"/>
@@ -221,6 +221,7 @@ defineProps([
 ])
 
 
+const IsFocusSearch = ref(false);
 const IsActiveSearchInput = ref(false);
 const IsFocusSearchInput = ref(false);
 
@@ -228,16 +229,26 @@ function toggleSearchInput() {
   IsActiveSearchInput.value = !IsActiveSearchInput.value;
 }
 
-function focusSearchInput() {
-  IsActiveSearchInput.value = true;
-  IsFocusSearchInput.value = !IsFocusSearchInput.value;
+async function toggleSearchFocus() {
+  await
+    new Promise(async (resolve) => {
+      IsFocusSearch.value = !IsFocusSearch.value; //done
+      resolve()
+    })
+  await handleSearchInput()
 }
 
-function handleSearchInput() {
-  focusSearchInput();
-  if (IsActiveSearchInput.value) {
-    toggleSearchInput();
-  }
+async function toggleFocusSearchInput() {
+  await
+    new Promise(async (resolve) => {
+      IsFocusSearchInput.value = !IsFocusSearchInput.value;
+      resolve()
+    })
+  await handleSearchInput()
+}
+
+async function handleSearchInput() {
+  IsActiveSearchInput.value = IsFocusSearch.value || IsFocusSearchInput.value;
 }
 
 </script>

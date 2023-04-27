@@ -91,7 +91,6 @@ export default {
       const $sidebar = $("#left-sidebar");
       this.SideMenuFlag && (await $sidebar.toggleClass("absolute left-0 top-0")) && (await $("#Logo").toggleClass("hidden ease-in ease-out"));
       await $("#bg-sidebar").toggleClass("hidden");
-      // const toggleMain = this.SideMenuFlag && (await $(".main").toggleClass("active", 300));
       await $sidebar
         .stop()
         .slideToggle(400, "linear", async () => {
