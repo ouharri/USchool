@@ -1,26 +1,31 @@
 <template>
-  <div :class="theme.mode">
-    <div class="flex h-screen bg-gray-100 dark:bg-gray-900 max-h-screen transition duration-700 ease-in-out">
-      <side-bar
-        @toggleSideMenu="toggleSideMenu"
-        :theme="theme"
-        :menu="menu"
-        :profil-link="'/admin/profile'"
-        :setting-link="'/admin/setting'"
-      ></side-bar>
-      <div class="flex flex-col flex-1 w-full nav-bar transition duration-700 ease-in-out">
-        <nav-bar
+  <div>
+    <div :class="theme.mode" v-if="IsRender">
+      <div class="flex h-screen bg-gray-100 dark:bg-gray-900 max-h-screen transition duration-700 ease-in-out">
+        <side-bar
           @toggleSideMenu="toggleSideMenu"
-          @toggleTheme="toggleTheme"
-          @logout="logout"
           :theme="theme"
-        ></nav-bar>
-        <main class="h-full overflow-y-auto">
-          <div class="container grid px-6 mx-auto screen transition duration-700 ease-in-out main">
-            <nuxt/>
-          </div>
-        </main>
+          :menu="menu"
+          :profil-link="'/admin/profile'"
+          :setting-link="'/admin/setting'"
+        ></side-bar>
+        <div class="flex flex-col flex-1 w-full nav-bar transition duration-700 ease-in-out">
+          <nav-bar
+            @toggleSideMenu="toggleSideMenu"
+            @toggleTheme="toggleTheme"
+            @logout="logout"
+            :theme="theme"
+          ></nav-bar>
+          <main class="h-full overflow-y-auto">
+            <div class="container grid px-6 mx-auto screen transition duration-700 ease-in-out main">
+              <nuxt/>
+            </div>
+          </main>
+        </div>
       </div>
+    </div>
+    <div v-else>
+      <app-splash></app-splash>
     </div>
   </div>
 </template>
@@ -31,22 +36,6 @@ import {reactive, ref} from "vue";
 
 export default {
   name: "index",
-  mounted() {
-    initDropdowns();
-    if (process.client) {
-      this.theme = localStorage.getItem("theme") !== null ?
-        JSON.parse(localStorage.getItem("theme"))
-        :
-        {
-          mode: window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light',
-          color: {
-            primary: 'blue-600',
-            accent: 'blue-400'
-          }
-        };
-    }
-  },
   data() {
     return {
       theme: reactive(
@@ -77,6 +66,7 @@ export default {
         },
       ],
       SideMenuFlag: true,
+      IsRender: false,
       App: process.client ? JSON.parse(localStorage.getItem('APP'))
         || {
           IsOpenMenu: false,
@@ -99,7 +89,7 @@ export default {
     },
     async toggleSideMenu() {
       const $sidebar = $("#left-sidebar");
-      this.SideMenuFlag && (await $sidebar.toggleClass("absolute right-0-0 top-0")) && (await $("#Logo").toggleClass("hidden ease-in ease-out"));
+      this.SideMenuFlag && (await $sidebar.toggleClass("absolute left-0 top-0")) && (await $("#Logo").toggleClass("hidden ease-in ease-out"));
       await $("#bg-sidebar").toggleClass("hidden");
       // const toggleMain = this.SideMenuFlag && (await $(".main").toggleClass("active", 300));
       await $sidebar
@@ -114,7 +104,7 @@ export default {
         .then(async () => {
           this.App.IsOpenMenu = !this.App.IsOpenMenu;
           process.client && localStorage.setItem('APP', JSON.stringify(this.App));
-          this.SideMenuFlag && (await $("#left-sidebar").toggleClass("absolute right-0-0 top-0")) && (await $("#Logo").toggleClass("hidden ease-in ease-out"));
+          this.SideMenuFlag && (await $("#left-sidebar").toggleClass("absolute left-0 top-0")) && (await $("#Logo").toggleClass("hidden ease-in ease-out"));
         });
     },
   },
@@ -123,11 +113,44 @@ export default {
       await new Promise(async (resolve) => {
         this.App.IsOpenMenu = false;
         this.SideMenuFlag = true;
-        this.SideMenuFlag && (await $("#left-sidebar").toggleClass("absolute right-0-0 top-0"));
+        this.SideMenuFlag && (await $("#left-sidebar").removeClass("absolute left-0 top-0"));
+        this.SideMenuFlag && (await $("#bg-sidebar").removeClass("hidden"));
         resolve();
       }).then(async () => {
         await this.toggleSideMenu();
       });
+    }
+  },
+  async mounted() {
+    await this.$nextTick(() => {
+      this.IsRender = true;
+    });
+    await this.$forceUpdate();
+    initDropdowns();
+    if (process.client) {
+      this.theme = localStorage.getItem("theme") !== null ?
+        JSON.parse(localStorage.getItem("theme"))
+        :
+        {
+          mode: window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light',
+          color: {
+            primary: 'blue-600',
+            accent: 'blue-400'
+          }
+        };
+    }
+  },
+  watch: {
+    IsRender: async function (newValue) {
+      await this.$forceUpdate();
+      if (newValue) {
+        await this.$nextTick(async () => {
+          this.IsRender = true;
+          alert('hh')
+          await this.$forceUpdate();
+        });
+      }
     }
   }
 
