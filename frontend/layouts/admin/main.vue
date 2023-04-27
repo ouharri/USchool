@@ -125,7 +125,6 @@ export default {
     await this.$nextTick(() => {
       this.IsRender = true;
     });
-    initDropdowns();
     if (process.client) {
       this.theme = localStorage.getItem("theme") !== null ?
         JSON.parse(localStorage.getItem("theme"))
@@ -139,6 +138,7 @@ export default {
           }
         };
     }
+    await initDropdowns();
   },
   watch: {
     IsRender: async function (newValue) {
@@ -147,6 +147,7 @@ export default {
         await this.$nextTick(async () => {
           this.IsRender = true;
           await this.$forceUpdate();
+          await initDropdowns();
         });
       }
     }
