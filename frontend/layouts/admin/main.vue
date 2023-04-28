@@ -36,6 +36,9 @@ import {reactive} from "vue";
 
 export default {
   name: "index",
+  head: {
+    title: 'Student',
+  },
   data() {
     return {
       theme: reactive(
@@ -64,6 +67,11 @@ export default {
           'icon': `<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewBox="0 0 24 24" stroke="none"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path></svg>`,
           'path': '/admin/users',
         },
+        {
+          'name': 'calendar',
+          'icon': '<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" viewBox="0 0 24 24" stroke="none""><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path><path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path></svg>',
+          'path': '/admin/calendar',
+        }
       ],
       SideMenuFlag: true,
       IsRender: false,
@@ -151,7 +159,6 @@ export default {
       }
     }
   }
-
 }
 </script>
 

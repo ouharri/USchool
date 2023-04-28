@@ -22,21 +22,23 @@
           <widget-statistique
             class="col-span-1 handle"
             :chartTitle="'SUBSCRIBERS'"
+            :chartValue="261"
             :chartColor="{
               primary: 'rgba(246, 109, 155, 0.8)',
               accent: 'rgba(246, 109, 155, 0.1)'
             }"
-            :chartData="[1, 2, 1, 3, 5, 4, 7]"
+            :chartData="[7, 4, 5, 1, 1, 2, 3]"
           ></widget-statistique>
 
           <widget-statistique
             class="col-span-1 handle"
             :chartTitle="'COMMENTS'"
+            :chartValue="3261"
             :chartColor="{
               primary: 'rgba(246, 153, 63, 0.8)',
               accent: 'rgba(246, 153, 63, 0.1)'
             }"
-            :chartData="[1, 2, 1, 3, 5, 4, 7]"
+            :chartData="[7,0,1,7,8,2,1]"
           ></widget-statistique>
 
           <div class="col-span-3 handle grid grid-cols-3 w-full gap-x-4 gap-y-4" v-sortable="{ handle: '.handle-h' }">
@@ -46,21 +48,23 @@
               <widget-statistique
                 class="col-span-1 handle-v"
                 :chartTitle="'STUDENTS'"
+                :chartValue="601"
                 :chartColor="{
                 primary: 'rgba(63,246,66,0.8)',
                 accent: 'rgba(63,246,66,0.1)'
               }"
-                :chartData="[1, 2, 1, 3, 5, 4, 7]"
+                :chartData="[3,1,2,1,3,5,4]"
               ></widget-statistique>
 
               <widget-statistique
                 class="col-span-1 handle-v"
-                :chartTitle="'TETCHERS'"
+                :chartTitle="'TEACHERS'"
+                :chartValue="61"
                 :chartColor="{
                 primary: 'rgba(130,35,218,0.8)',
                 accent: 'rgba(130,35,218,0.1)'
               }"
-                :chartData="[1, 2, 1, 3, 5, 4, 7]"
+                :chartData="[0,3,9,1,2,1,3]"
               ></widget-statistique>
             </div>
           </div>

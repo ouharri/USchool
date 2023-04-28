@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full cursor-pointer rounded-lg flex flex-col items-center text-center p-6 border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white  dark:from-gray-800 dark:to-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out">
     <div class="text-md font-bold flex flex-col"><span class="uppercase">Today</span> <span
-      class="font-normal text-gray-700 text-sm">July 29</span></div>
+      class="font-normal text-gray-700 text-sm">April 28</span></div>
     <div class="w-32 h-32 flex items-center justify-center">
       <svg class="h-20" viewBox="0 0 81 73" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -21,7 +21,7 @@
       </svg>
     </div>
     <p class="text-gray-700 mb-2">Partly cloud</p>
-    <div class="text-3xl font-bold text-gray-900 mb-6">32º<span class="font-normal text-gray-700 mx-1">/</span>20º</div>
+    <div class="text-3xl font-bold text-gray-900 mb-6">32º<span class="font-normal text-gray-700 mx-1">/</span>33º</div>
     <div class="flex justify-between w-full">
       <div class="flex items-center text-gray-700 px-2">
         <svg class="mr-2 h-4" viewBox="0 0 11 18" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -69,7 +69,7 @@
             </g>
           </g>
         </svg>
-        20 km/h
+        5 km/h
       </div>
     </div>
   </div>

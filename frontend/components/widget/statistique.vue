@@ -3,8 +3,8 @@
     class="rounded-lg border border-gray-200 dark:border-gray-700 bg-gradient-to-tr from-white  dark:from-gray-800 dark:to-gray-800 to-transparent dark:text-gray-200 transition duration-700 ease-in-out  relative overflow-hidden">
     <div class="px-3 pt-8 pb-10 text-center relative z-10">
       <h4 class="text-sm uppercase text-gray-500 leading-tight">{{ chartTitle }}</h4>
-      <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">3,682</h3>
-      <p class="text-xs text-green-500 leading-tight">▲ 57.1%</p>
+      <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">{{ chartValue }}</h3>
+      <p class="text-xs text-green-500 leading-tight"></p>
     </div>
     <div class="absolute bottom-0 inset-x-0">
       <canvas :id="`chart-${this.chartTitle}`" height="70" width="102%"></canvas>
@@ -90,6 +90,10 @@ export default {
       type: String,
       default: "ChartTitle"
     },
+    chartValue: {
+      type: Number,
+      default: 3453
+    }
   },
   mounted() {
     const ctx = document.getElementById(`chart-${this.chartTitle}`).getContext('2d');

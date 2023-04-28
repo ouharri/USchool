@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $users = User::all();
+            $users = User::with('roles')->get();
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }

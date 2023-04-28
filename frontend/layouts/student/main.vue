@@ -31,6 +31,9 @@ import {reactive} from "vue";
 
 export default {
   name: "index",
+  head: {
+    title: 'Student',
+  },
   mounted() {
     initDropdowns();
     if (process.client) {
@@ -183,7 +186,12 @@ export default {
         await this.toggleSideMenu();
       });
     }
-  }
+  },
+  watch: {
+    async $route(to, from) {
+      await this.$forceUpdate();
+    },
+  },
 }
 </script>
 

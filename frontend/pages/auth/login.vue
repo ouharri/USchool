@@ -263,7 +263,9 @@ export default {
             userStore().user = this.$auth.user;
             localStorage.setItem('user', JSON.stringify(this.$auth.user));
 
-            await this.$router.push({name: 'student'})
+            if(this.$auth.user.role.include('SUPER_ADMIN'))
+            await this.$router.push({name: 'admin'})
+            else await this.$router.push({name: 'student'})
             // || await this.$router.push({name: 'dashboard'});
           } catch (err) {
             this.$message({
