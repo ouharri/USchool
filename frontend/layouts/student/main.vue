@@ -15,7 +15,7 @@
           @logout="logout"
           :theme="theme"
         ></nav-bar>
-        <main class="h-full overflow-y-auto">
+        <main class="h-full overflow-y-auto screen">
           <div class="container grid px-6 mx-auto screen transition duration-700 ease-in-out main">
             <nuxt/>
           </div>

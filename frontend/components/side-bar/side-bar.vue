@@ -11,7 +11,7 @@
           <a
             class="text-lg font-bold flex justify-center text-gray-800 dark:text-gray-200 transition duration-700 ease-in-out py-1"
             href="#">
-            <span class="hidden" :class="IsOpenSemiSide? '':'md:block'">US</span>
+            <span class="hidden" :class="IsOpenSemiSide? '':'md:block'"><img src="/education.png" alt="US" class="w-8 h-8"/></span>
             <span class="hidden" :class="IsOpenSemiSide? 'md:block':'hidden'">USchool</span>
             <span class="hidden" id="Logo">USchool</span>
           </a>

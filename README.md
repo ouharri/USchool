@@ -4,4 +4,4 @@ This project aims to create a platform or social network exclusively for student
 ###
 ![img_2.png](assets/img_2.png)
 ###
-![img_3.png](assets/img_3.png)
+![img.png](assets/img.png)
