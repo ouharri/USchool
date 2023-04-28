@@ -136,6 +136,9 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/tymon/jwt-auth" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/spatie/laravel-permission" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/laravel/sanctum" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/teapot/status-code" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/cloudinary/transformation-builder-sdk" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/cloudinary/cloudinary_php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

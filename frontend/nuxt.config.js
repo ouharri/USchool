@@ -12,10 +12,11 @@ export default {
     link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
   },
 
-  server: {
-    host: '0.0.0.0',// default: localhost
-    port: 3000
-  },
+  // Network hosting
+  // server: {
+  //   host: '0.0.0.0',
+  //   port: 3000
+  // },
   // php artisan serv --host="172.16.8.29" --port=8080
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -96,12 +97,22 @@ export default {
     extendRoutes(routes, resolve) {
       routes.push({
           path: '*',
-          component: resolve(__dirname, 'pages/index.vue'),
+          component: resolve(__dirname, 'pages/auth/login.vue'),
+        },
+        {
+          name: 'Home',
+          path: '/',
+          component: resolve(__dirname, 'pages/auth/login.vue'),
         },
         {
           name: 'login',
           path: '/login',
           component: resolve(__dirname, 'pages/auth/login.vue'),
+        },
+        {
+          name: 'forgot-password',
+          path: '/forgot-password',
+          component: resolve(__dirname, 'pages/auth/password.vue'),
         }
       )
     }

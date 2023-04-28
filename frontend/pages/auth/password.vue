@@ -12,17 +12,17 @@
             alt="USchool"
           />
           <h2 class="mt-6 text-2xl font-extrabold text-gray-900">
-            Sign in to your account
+            Recover your account
           </h2>
           <p class="mt-2 text-sm text-gray-600">
             Or
             {{ ' ' }}
-            <a
-              href="#"
+            <NuxtLink
+              to="/login"
               class="font-medium text-indigo-600 hover:text-indigo-500"
             >
-              search for your school here
-            </a>
+              Sign in to your account
+            </NuxtLink>
           </p>
         </div>
 
@@ -37,7 +37,7 @@
                     href="#"
                     class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
-                    <span class="sr-only">Sign in with Facebook</span>
+                    <span class="sr-only">Recover with Facebook</span>
                     <svg
                       class="w-5 h-5"
                       aria-hidden="true"
@@ -112,7 +112,7 @@
 
           <div class="mt-6">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
-              <div>
+              <div class="my-12">
                 <el-form-item prop="email">
                   <label
                     for="email"
@@ -132,42 +132,14 @@
                   </div>
                 </el-form-item>
               </div>
-              <div class="space-y-1">
-                <el-form-item prop="password">
-                  <label
-                    for="password"
-                    class="block text-sm font-medium text-gray-700"
-                  >
-                    Password
-                  </label>
-                  <div class="mt-1">
-                    <el-input
-                      placeholder="Please input password"
-                      autocomplete="on"
-                      v-model="ruleForm.password"
-                      show-password
-                    >
-                    </el-input>
-                  </div>
-                </el-form-item>
-              </div>
-
-              <div class="flex items-center justify-between">
-                <el-form-item>
-                  <div class="flex items-center">
-                    <el-checkbox v-model="ruleForm.remember_me">
-                      Remember me
-                    </el-checkbox
-                    >
-                  </div>
-                </el-form-item>
+              <div class="flex items-center justify-end">
                 <el-form-item>
                   <div class="text-sm">
                     <NuxtLink
-                      to="/forgot-password"
+                      to="/login"
                       class="font-medium text-indigo-600 hover:text-indigo-500"
                     >
-                      Forgot your password?
+                      Remember your password?
                     </NuxtLink>
                   </div>
                 </el-form-item>
@@ -209,9 +181,7 @@ export default {
   data() {
     return {
       ruleForm: {
-        password: '',
         email: '',
-        remember_me: false,
       },
       rules: {
         email: [
@@ -229,19 +199,6 @@ export default {
             min: 6,
             max: 50,
             message: 'Length should be 3 to 50',
-            trigger: 'blur',
-          },
-        ],
-        password: [
-          {
-            required: true,
-            message: 'Please enter a password',
-            trigger: 'blur',
-          },
-          {
-            min: 3,
-            max: 50,
-            message: 'Length should be 3 to 5',
             trigger: 'blur',
           },
         ],
@@ -274,7 +231,7 @@ export default {
         } else {
           this.$notify({
             title: 'Warning',
-            message: 'please enter all fields',
+            message: 'please enter you\'re email',
             type: 'warning',
           })
           return false
