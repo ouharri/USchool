@@ -253,25 +253,40 @@ export default {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
           try {
+
             await this.$auth.loginWith('USchool', {data: this.ruleForm})
+
             this.$message({
               message: 'welcome back ' + this.$auth.user.first_name + ' ' + this.$auth.user.last_name,
               type: 'success',
             })
 
-
             userStore().user = this.$auth.user;
             localStorage.setItem('user', JSON.stringify(this.$auth.user));
 
-            if(this.$auth.user.role.include('SUPER_ADMIN'))
-            await this.$router.push({name: 'admin'})
-            else await this.$router.push({name: 'student'})
-            // || await this.$router.push({name: 'dashboard'});
+            switch (this.$auth.user?.roles){
+              case 'SUPER_ADMIN':
+                await this.$router.push({path: '/admin'})
+                break;
+              case 'ADMIN':
+                await this.$router.push({path: '/admin'})
+                break;
+              case 'STUDENT':
+                await this.$router.push({path: '/student'})
+                break;
+              case 'TEACHER':
+                await this.$router.push({path: '/teacher'})
+                break;
+              default:
+                await this.$router.push({path: '/admin'})
+                break;
+            }
           } catch (err) {
             this.$message({
               message: 'Email or password is incorrect',
               type: 'error',
             })
+            console.error(err);
           }
         } else {
           this.$notify({
