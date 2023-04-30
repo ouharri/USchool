@@ -9,12 +9,12 @@
     <el-container class="w-full overflow-x-hidden rounded-lg shadow-xs z-0 transition duration-700 ease-in-out"
                   v-loading="loading"
                   :element-loading-background="loadingBg">
-      <div class="w-full flex flex-col">
-        <div class="w-full overflow-x">
+      <div class="w-full flex flex-col transition duration-700 ease-in-out">
+        <div class="w-full overflow-x transition duration-700 ease-in-out">
           <table class="w-full whitespace-no-wrap">
             <thead>
             <tr
-              class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+              class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800 transition duration-700 ease-in-out"
             >
               <th class="px-4 py-3">User</th>
               <th class="px-4 py-3">Email</th>
@@ -24,9 +24,9 @@
             </tr>
             </thead>
             <tbody
-              class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+              class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800 transition duration-700 ease-in-out"
             >
-            <tr class="text-gray-700 dark:text-gray-400" v-for="(user, index)  in tableData" :key="user.id">
+            <tr class="text-gray-700 dark:text-gray-400 transition duration-700 ease-in-out" v-for="(user, index)  in tableData" :key="user.id">
               <td class="px-4 py-3">
                 <div class="flex items-center text-sm">
                   <!-- Avatar with inset shadow -->
@@ -61,7 +61,7 @@
               </td>
               <td class="px-4 py-3 text-xs">
                         <span
-                          class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                          class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100 transition duration-700 ease-in-out transition duration-700 ease-in-out"
                         >
                           Approved
                         </span>
@@ -72,7 +72,7 @@
               <td class="px-4 py-3">
                 <div class="flex items-center space-x-4 text-sm">
                   <button
-                    class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                    class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray transition duration-700 ease-in-out"
                     :class="`text-${theme.color.primary}`"
                     aria-label="Edit"
                     @click="ActiveUpdateUserModal(user.id,index)"
@@ -89,7 +89,7 @@
                     </svg>
                   </button>
                   <button
-                    class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                    class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray transition duration-700 ease-in-out"
                     :class="`text-${theme.color.primary}`"
                     aria-label="Delete"
                   >
