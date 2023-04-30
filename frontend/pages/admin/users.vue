@@ -9,7 +9,7 @@
     <el-container class="w-full overflow-y-auto rounded-lg shadow-xs z-0 transition duration-700 ease-in-out overflow-x"
                   v-loading="loading"
                   :element-loading-background="loadingBg">
-      <div class="w-fit flex flex-col">
+      <div class="w-full flex flex-col">
         <div class="w-full">
           <table class="w-full whitespace-no-wrap">
             <thead>
