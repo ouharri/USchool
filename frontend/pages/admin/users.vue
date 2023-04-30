@@ -26,7 +26,8 @@
             <tbody
               class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800 transition duration-700 ease-in-out"
             >
-            <tr class="text-gray-700 dark:text-gray-400 transition duration-700 ease-in-out" v-for="(user, index)  in tableData" :key="user.id">
+            <tr class="text-gray-700 dark:text-gray-400 transition duration-700 ease-in-out"
+                v-for="(user, index)  in tableData" :key="user.id">
               <td class="px-4 py-3">
                 <div class="flex items-center text-sm">
                   <!-- Avatar with inset shadow -->
@@ -343,7 +344,7 @@ export default {
         }
       ),
       loading: true,
-      loadingBg: reactive('rgba(255, 255, 255, 0.5)'),
+      loadingBg: 'rgba(255, 255, 255, 0.5)',
       IsActiveUpdateUserModel: false,
     };
   },
@@ -360,10 +361,21 @@ export default {
             accent: 'blue-400'
           }
         };
-      this.loadingBg = (this.theme.mode === 'dark') ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.5)';
     }
   },
   created() {
+    this.loadingBg = ((localStorage.getItem("theme") !== null ?
+      JSON.parse(localStorage.getItem("theme"))
+      :
+      {
+        mode: window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light',
+        color: {
+          primary: 'blue-600',
+          accent: 'blue-400'
+        }
+      }).mode === 'dark') ? 'rgba(0,0,0,0.23)' : 'rgba(255, 255, 255, 0.5)';
+
     this.getAllUsers();
   },
   methods: {
