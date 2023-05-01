@@ -1,7 +1,7 @@
 <template>
   <transition>
     <div>
-      <div class="text-2xl font-bold h-screen w-screen flex flex-col justify-center items-center" :class="`text-${theme.color.primary}`">
+      <div class="text-2xl font-bold h-screen w-screen flex flex-col justify-center items-center dark:bg-gray-900" :class="`text-${theme.color.primary}`">
         <img src="/lg-logo.svg" alt="USchool Logo"/>
         <div class="lds-ellipsis">
           <div :class="`bg-${theme.color.primary}`"></div>
