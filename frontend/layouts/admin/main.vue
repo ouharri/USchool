@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div :class="theme.mode" v-if="IsRender">
-      <div class="flex h-screen bg-gray-100 dark:bg-gray-900 max-h-screen transition duration-700 ease-in-out">
+    <div :class="theme.mode">
+      <div class="flex h-screen bg-gray-100 dark:bg-gray-900 max-h-screen transition duration-700 ease-in-out" v-if="IsRender">
         <side-bar
           @toggleSideMenu="toggleSideMenu"
           :theme="theme"
@@ -23,9 +23,9 @@
           </main>
         </div>
       </div>
-    </div>
-    <div v-else>
-      <app-splash></app-splash>
+      <div v-else>
+        <app-splash></app-splash>
+      </div>
     </div>
   </div>
 </template>
