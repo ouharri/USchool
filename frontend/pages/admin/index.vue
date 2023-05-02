@@ -10,7 +10,7 @@
     </h1>
 
     <div class="mt-4 grid grid-cols-1 lg:grid-cols-4 gap-x-5 gap-y-5" v-sortable="{ handle: '.handle' }">
-      <widget-calendar class="col-span-2"></widget-calendar>
+      <calendar class="col-span-2"></calendar>
       <div class="col-span-2 h-full">
         <div class="grid grid-cols-3 w-full gap-x-4 gap-y-4 h-full" v-sortable="{ handle: '.handle' }">
 
@@ -199,6 +199,7 @@ import {onMounted, reactive, ref} from "vue";
 import {userStore} from "~/stores/user";
 import AppModal from "~/components/shared/modal/app-modal.vue";
 import DelModal from "~/components/shared/modal/del-modal.vue";
+import Calendar from "~/pages/admin/calendar.vue";
 
 const openDelModal = ref(false);
 const openAppModal = ref(false);
