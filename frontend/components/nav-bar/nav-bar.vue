@@ -233,7 +233,7 @@ async function toggleSearchFocus() {
   await
     new Promise(async (resolve) => {
       IsFocusSearch.value = !IsFocusSearch.value; //done
-      resolve()
+      await resolve()
     })
   await handleSearchInput()
 }
@@ -242,13 +242,13 @@ async function toggleFocusSearchInput() {
   await
     new Promise(async (resolve) => {
       IsFocusSearchInput.value = !IsFocusSearchInput.value;
-      resolve()
+      await resolve()
     })
   await handleSearchInput()
 }
 
 async function handleSearchInput() {
-  IsActiveSearchInput.value = IsFocusSearch.value || IsFocusSearchInput.value;
+  IsActiveSearchInput.value = ( IsFocusSearch.value && IsFocusSearchInput.value ) || (IsFocusSearchInput.value && !IsFocusSearch.value);
 }
 
 </script>

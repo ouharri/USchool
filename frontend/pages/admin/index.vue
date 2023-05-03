@@ -43,8 +43,8 @@
 
           <div class="col-span-3 handle grid grid-cols-3 w-full gap-x-4 gap-y-4" v-sortable="{ handle: '.handle-h' }">
             <widget-weather class="col-span-2 handle-h"></widget-weather>
-
             <div class="flex flex-col justify-between gap-y-4 handle-h" v-sortable="{ handle: '.handle-v' }">
+
               <widget-statistique
                 class="col-span-1 handle-v"
                 :chartTitle="'STUDENTS'"
@@ -66,6 +66,7 @@
               }"
                 :chartData="[0,3,9,1,2,1,3]"
               ></widget-statistique>
+
             </div>
           </div>
         </div>
@@ -82,8 +83,8 @@
       <template v-slot:header>
         hhhh
       </template>
-      <template v-slot:body>
 
+      <template v-slot:body>
         <form>
           <div class="grid gap-6 mb-6 md:grid-cols-2">
             <div>

@@ -398,7 +398,7 @@ export default {
 </script>
 
 <script setup>
-import {onMounted, reactive, ref} from "vue";
+import {reactive, ref} from "vue";
 
 const openDelModal = ref(false);
 const openAppModal = ref(false);
