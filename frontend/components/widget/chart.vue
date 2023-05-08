@@ -103,7 +103,9 @@ export default {
     gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
     gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
     gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+
     myChart?.destroy();
+
     myChart = new Chart(ctx1, {
       type: "line",
       data: {

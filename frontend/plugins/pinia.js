@@ -9,5 +9,4 @@ export default ({app, store}) => {
 
   // Ajouter l'instance Pinia à l'application Nuxt
   app.pinia = pinia
-
 }

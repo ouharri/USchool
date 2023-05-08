@@ -1,6 +1,7 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 
 export default ({ app }) => {
+
   const axios: NuxtAxiosInstance = app.$axios.create({
     headers: {
       common: {
