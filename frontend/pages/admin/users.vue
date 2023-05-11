@@ -5,7 +5,6 @@
     >
       Users Table :
     </h1>
-
     <el-container class="w-full overflow-x-hidden rounded-lg shadow-xs z-0 transition duration-700 ease-in-out"
                   v-loading="loading"
                   :element-loading-background="loadingBg">
@@ -30,7 +29,6 @@
                 v-for="(user, index)  in tableData" :key="user.id">
               <td class="px-4 py-3">
                 <div class="flex items-center text-sm">
-                  <!-- Avatar with inset shadow -->
                   <div
                     class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
                   >
@@ -323,7 +321,6 @@
 
 <script>
 import {reactive, ref} from "vue";
-
 export default {
   middleware: ['auth', 'role'],
   layout: 'admin/main',
@@ -375,7 +372,6 @@ export default {
           accent: 'blue-400'
         }
       }).mode === 'dark') ? 'rgba(0,0,0,0.23)' : 'rgba(255, 255, 255, 0.5)';
-
     this.getAllUsers();
   },
   methods: {
@@ -399,12 +395,9 @@ export default {
 
 <script setup>
 import {reactive, ref} from "vue";
-
 const openDelModal = ref(false);
 const openAppModal = ref(false);
-
 </script>
 
 <style scoped>
-
 </style>

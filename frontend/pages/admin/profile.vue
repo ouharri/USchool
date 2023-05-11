@@ -1,5 +1,4 @@
 <template>
-
 </template>
 
 <script>
@@ -19,8 +18,6 @@ import Chart from '@/plugins/chart';
 import {userStore} from "~/stores/user";
 import AppModal from "~/components/shared/modal/app-modal.vue";
 import DelModal from "~/components/shared/modal/del-modal.vue";
-
-
 const user = userStore();
 
 const theme = reactive(
@@ -43,5 +40,4 @@ onMounted(() => {
 </script>
 
 <style scoped>
-
 </style>

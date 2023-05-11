@@ -202,7 +202,6 @@
 
 <script>
 import {userStore} from "~/stores/user";
-
 export default {
   layout: 'auth',
   data() {
